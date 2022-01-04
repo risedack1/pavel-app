@@ -1,0 +1,24 @@
+@import "mixins";
+@import "fonts";
+@import "vars";
+@import "reset";
+@import "libs";
+@import "global";
+
+//main style
+@import "body-bg";
+
+//parts
+@import "login";
+
+// components
+@import "components/tabs";
+@import "components/accordion";
+@import "components/popup";
+
+.test {
+    // @include adaptiv-value("padding", 100, 10, 1);
+    // @include adaptiv-value("font-size", 60, 16, 1);
+
+    background-color: #eee000;
+}
