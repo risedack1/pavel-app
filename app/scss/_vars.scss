@@ -1,4 +1,4 @@
-// font-family: 'DMSans', sans-serif;
+// font-family: 'Gilroy', sans-serif;
 // font-family: 'Poppins', sans-serif;
 // font-family: 'Rubik', sans-serif;
 
@@ -10,9 +10,16 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
-// container size
+//colors
 
-$container: 1200;
+$linear-blue: linear-gradient(269.78deg, #005CA6 0.19%, #0078FF 98.74%);
+$linear-green: linear-gradient(269.78deg, #00A660 0.19%, #00E257 98.74%);
+$white-bg: rgba(0, 0, 0, 0.2);
+$white: #fff;  
+
+// container size     
+
+$container: 1920;
 $max-container: 1800;
 
 // fansybox error

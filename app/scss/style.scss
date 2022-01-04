@@ -5,6 +5,12 @@
 @import "libs";
 @import "global";
 
+//main style
+@import "body-bg";
+
+//parts
+@import "sign-up";
+
 // components
 @import "components/tabs";
 @import "components/accordion";

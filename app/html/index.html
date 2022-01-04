@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="css/style.min.css" />
-    </head>
+<html lang="ru">
 
-    <body>
-        <main class="main">
-            <div class="container"></div>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/style.min.css" />
+</head>
 
-            @@include('./parts/_popup.html')
-        </main>
-        <script src="js/main.min.js"></script>
-    </body>
+<body class="body--sign-up">
+    <main class="main">
+        <h1 class="visually-hidden">
+            Войти в Task list
+        </h1>
+        <div class="container">
+            <div class="sign-up">
+                <form class="sign-up__form sign-up-form" action="#" method="post">
+                    <img class="sign-up-form__logo" src="images/logo.png" alt="логотип Task list">
+                    <label class="sign-up-form__label">
+                        <span class="sign-up-form__span">Email</span>
+                        <input class="sign-up-form__input" type="email" name="Email" placeholder="example@gmail.com"
+                            required>
+                    </label>
+                    <label class="sign-up-form__label">
+                        <span class="sign-up-form__span">Password</span>
+                        <input class="sign-up-form__input" type="password" name="password" required>
+                    </label>
+                    <button class="sign-up-form__button" type="submit">Войти</button>
+                </form>
+            </div>
+        </div>
+        @@include('./components/_popup.html')
+    </main>
+    <script src="js/main.min.js"></script>
+</body>
+
 </html>

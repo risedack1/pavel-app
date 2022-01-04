@@ -6,12 +6,12 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    font-family: "Rubik", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.9;
-    color: #010101;
-    background-color: #fff;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.7;
+    color: $white;
+    background-image: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(255, 193, 165, 0.932) 0%, rgba(244, 170, 110, 0.5) 77.08%, rgba(213, 151, 70, 0.2) 100%);
 }
 
 .main {
@@ -28,16 +28,18 @@ body {
     }
 }
 
-.sr-only {
+.visually-hidden {
     position: absolute;
-    margin: -1px;
+    white-space: nowrap;
     width: 1px;
     height: 1px;
-    clip-path: inset(0 0 0 0);
     overflow: hidden;
     border: 0;
-    white-space: nowrap;
-}
+    padding: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    margin: -1px;
+  }
 
 .title {
     font-family: "DMSans", sans-serif;
