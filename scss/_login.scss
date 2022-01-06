@@ -73,9 +73,6 @@
     &__buttons {
         display: flex;
         justify-content: space-between;
-        color: $white;
-        font-weight: 400;
-        line-height: 1;
         text-transform: uppercase;
 
         @include w($xsm) {
@@ -85,9 +82,6 @@
     }
 
     &__buttons-create {
-        padding: 9px 12px;
-        border: 1px solid #fff;
-        border-radius: 9px;
         background-image: $linear-green;
 
         @include w($xsm) {
@@ -96,10 +90,6 @@
     }
 
     &__buttons-sign-in {
-        padding: 9px 19px;
-        border: 1px solid #fff;
-        color: $white;
-        border-radius: 9px;
         background-image: $linear-blue;
     }
 
@@ -107,9 +97,6 @@
         width: 100%;
         padding: 12px 10px;
         text-align: center;
-        color: $white;
-        border: 1px solid #fff;
-        border-radius: 9px;
         background-image: $linear-blue;
     }
 }
