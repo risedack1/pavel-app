@@ -184,6 +184,65 @@ document.addEventListener('keydown', function (e) {
 });
 //-------------------------------------------------------------------------------------------------------
 
+const tasks = document.querySelector('.main-tasks__list');
+
+document.addEventListener('DOMContentLoaded', function () {
+    const subList = document.querySelectorAll('.main-tasks__sublist');
+
+    subList.forEach(el => {
+        let subListHeight = el.clientHeight;
+        el.closest('.main-tasks__sublist-wrapper').style.height = `${subListHeight}px`;
+    });
+});
+
+tasks.addEventListener('click', function (e) {
+    const target = e.target;
+
+    if (target.classList.contains('main-tasks__item-button')) {
+        target.classList.toggle('hidden');
+
+        let activeListWrapper = target.nextSibling.nextSibling;
+
+        let activeList = activeListWrapper.firstChild.nextSibling;
+
+        let activeListHeight = 0;
+
+        if (target.classList.contains('hidden')) {
+
+            activeListWrapper.style.cssText = `height: 0px; opacity: 0; visibility: hidden;`;
+        } else {
+            activeListHeight = activeList.clientHeight;
+
+            activeListWrapper.style.cssText = `height: ${activeListHeight}px; opacity: 1; visibility: visible;`;
+        }
+
+
+    }
+});
+
+// Add new task button
+
+const taskBtn = document.querySelector('.main-tasks__button');
+const newTask = document.querySelector('.make-task');
+
+taskBtn.addEventListener('click', function () {
+    console.log('test');
+    newTask.classList.toggle('active');
+});
+
+// Clock
+
+function clock() {
+    var date = new Date(),
+        hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
+        minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+    document.querySelector('.header__time').innerHTML = hours + ':' + minutes;
+}
+setInterval(clock, 1000);
+clock();
+
+flatpickr(".header__icon--calendar");
+
 $(function () {
 
 });

@@ -12,7 +12,7 @@
 <body class="body--create">
     <main class="main">
         <h1 class="visually-hidden">
-            Войти в Task list
+            Заригестрироваться или войти в Task list
         </h1>
         <div class="container">
             <div class="login">
@@ -20,17 +20,18 @@
                     <img class="login-form__logo" src="images/logo.png" alt="логотип Task list">
                     <label class="login-form__label">
                         <span class="login-form__span">Email</span>
-                        <input class="login-form__input" type="email" name="Email" required>
+                        <input class="login-form__input" type="email" name="Email" aria-label="Add Email" required>
                     </label>
                     <label class="login-form__label">
                         <span class="login-form__span">Password</span>
-                        <input class="login-form__input" type="password" name="password" required>
+                        <input class="login-form__input" type="password" name="password" aria-label="Add password"
+                            required>
                     </label>
                     <div class="login-form__buttons">
-                        <a class="login-form__buttons-create" href="index.html">
+                        <a class="login-form__buttons-create button" href="index.html">
                             create account
                         </a>
-                        <button class="login-form__buttons-sign-in">
+                        <button class="login-form__buttons-sign-in button">
                             Sign In
                         </button>
                     </div>

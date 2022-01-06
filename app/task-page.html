@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task list</title>
+    <link rel="stylesheet" href="css/style.min.css" />
+</head>
+
+<body class="body--sign-up">
+    <main class="main">
+        <div class="wrapper">
+            <div class="header">
+                <a class="header__logo logo" href="#">
+                    <img src="images/logo.png" alt="логотип task list">
+                </a>
+                <ul class="header__icons">
+                    <li class="header__icon header__icon--calendar" role="button">
+                        <span class="visually-hidden">Открыть календарь</span>
+                        <svg>
+                            <use xlink:href="images/sprite.svg#calendar"></use>
+                        </svg>
+                    </li>
+                    <li class="header__icon">
+                        <span class="visually-hidden">перейти на сайт ex</span>
+                        <a class="header__link" href="https://www.xe.com">
+                            <svg>
+                                <use xlink:href="images/sprite.svg#ex"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="header__icon">
+                        <span class="visually-hidden">перейти к калькулятору</span>
+                        <a class="header__link" href="https://www.xe.com/" target="_blank">
+                            <svg>
+                                <use xlink:href="images/sprite.svg#calculate"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+                <span class="header__time">
+                    12:06
+                </span>
+                <a class="header__log-out" href="#">
+                    <svg>
+                        <use xlink:href="images/sprite.svg#log-out"></use>
+                    </svg>
+                </a>
+            </div>
+            <section class="main-tasks">
+                <div class="container">
+                    <h1 class="visually-hidden">
+                        Task list
+                    </h1>
+                    <aside class="main-tasks__aside">
+                        <button class="main-tasks__button button">
+                            Добавить задачу, заметку
+                        </button>
+                        <div class="main-tasks__make-task make-task">
+                            <input class="make-task__nameinput" type="text" name="task title"
+                                aria-label="введите название задания, заметки или ссылки" placeholder="Попробовать"
+                                required>
+                            <span class="make-task__span">
+                                Выберите список:
+                            </span>
+                            <div class="make-task__tabs tabs">
+                                <ul class="tabs__nav">
+                                    <li class="tabs-item tabs-item--task active" role="button">Задачи</li>
+                                    <li class="tabs-item tabs-item--note" role="button">Заметки</li>
+                                    <li class="tabs-item tabs-item--link" role="button">Ссылки</li>
+                                </ul>
+                                <div class="tabs__content">
+                                    <div class="tabs-block active tasks">
+                                        <span class="tasks__span">
+                                            Добавить задачу
+                                        </span>
+                                        <div class="tasks__textarea-wrapper">
+                                            <textarea class="tasks__textarea"
+                                                aria-label="ввеите задачи каждую с новой строчки"
+                                                placeholder="введите задачи (каждую с новой строчки)"></textarea>
+                                            <button class="tasks__textarea-button">
+                                                <span class="visually-hidden">
+                                                    добавить список
+                                                </span>
+                                                <svg>
+                                                    <use xlink:href="images/sprite.svg#plus"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-block note">
+                                        <span class="note__span">
+                                            Добавить заметку
+                                        </span>
+                                        <div class="note__textarea-wrapper">
+                                            <textarea class="note__textarea"
+                                                aria-label="ввеите задачи каждую с новой строчки"
+                                                placeholder="Текст заметки"></textarea>
+                                            <button class="note__textarea-button">
+                                                <span class="visually-hidden">
+                                                    добавить заметку
+                                                </span>
+                                                <svg>
+                                                    <use xlink:href="images/sprite.svg#note-btn"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-block links">
+                                        <span class="links__span">
+                                            Добавить ссылку
+                                        </span>
+                                        <div class="links__wrapper">
+                                            <div class="links__inputs">
+                                                <input class="links__input" type="text" required
+                                                    placeholder="URL ссылки">
+                                            </div>
+                                            <button class="links__btn">
+                                                <svg>
+                                                    <use xlink:href="images/sprite.svg#plus"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="make-task__button button">
+                                Сохранить
+                            </button>
+                        </div>
+                        <div class="main-tasks__aside-inner">
+                            <ul class="main-tasks__list">
+                                <li class="main-tasks__item">
+                                    <button class="main-tasks__item-button  main-tasks__item-button--tasks"
+                                        type="button">
+                                        Задачи
+                                    </button>
+                                    <div class="main-tasks__sublist-wrapper">
+                                        <ul class="main-tasks__sublist">
+                                            <li class="main-tasks__subitem">
+                                                <button class="main-tasks__task" type="button">
+                                                    Welcome
+                                                </button>
+                                                <button class="main-tasks__remove">
+                                                    <img src="../images/remove-icon.png" alt="удалить задачу">
+                                                </button>
+                                            </li>
+                                            <li class="main-tasks__subitem">
+                                                <button class="main-tasks__task" type="button">
+                                                    Попробовать Доски 1
+                                                </button>
+                                                <button class="main-tasks__remove">
+                                                    <img src="../images/remove-icon.png" alt="удалить задачу">
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="main-tasks__item">
+                                    <button class="main-tasks__item-button  main-tasks__item-button--notes"
+                                        type="button">
+                                        Заметки
+                                    </button>
+                                    <div class="main-tasks__sublist-wrapper">
+                                        <ul class="main-tasks__sublist">
+                                            <li class="main-tasks__subitem">
+                                                <button class="main-tasks__task" type="button">
+                                                    Добро пожаловать <img
+                                                        style="display: inline-block; margin-left: 5px;"
+                                                        src="../images/heand-icon.png">
+                                                </button>
+                                                <button class="main-tasks__remove">
+                                                    <img src="../images/remove-icon.png" alt="удалить задачу">
+                                                </button>
+                                            </li>
+                                            <li class="main-tasks__subitem">
+                                                <button class="main-tasks__task" type="button">
+                                                    Попробовать
+                                                </button>
+                                                <button class="main-tasks__remove">
+                                                    <img src="../images/remove-icon.png" alt="удалить задачу">
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="main-tasks__item">
+                                    <button class="main-tasks__item-button  main-tasks__item-button--links"
+                                        type="button">
+                                        Ссылки
+                                    </button>
+                                    <div class="main-tasks__sublist-wrapper">
+                                        <ul class="main-tasks__sublist">
+                                            <li class="main-tasks__subitem">
+                                                <button class="main-tasks__task" type="button">
+                                                    Example
+                                                </button>
+                                                <button class="main-tasks__remove">
+                                                    <img src="../images/remove-icon.png" alt="удалить задачу">
+                                                </button>
+                                            </li>
+                                            <li class="main-tasks__subitem">
+                                                <button class="main-tasks__task" type="button">
+                                                    Пример
+                                                </button>
+                                                <button class="main-tasks__remove">
+                                                    <img src="../images/remove-icon.png" alt="удалить задачу">
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </div>
+        <div class="popup popup--callback">
+    <div class="popup__content">
+        <div class="popup__body">
+            <div class="popup__close"></div>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse harum nemo, consequuntur
+            impedit cupiditate id facilis eius totam eum pariatur, distinctio ab aspernatur et,
+            nobis sed sint suscipit vero eveniet.
+        </div>
+    </div>
+</div>
+
+<div class="popup popup--video">
+    <div class="popup__content">
+        <div class="popup__body">
+            <div class="popup__close popup__close--video"></div>
+            <div class="popup__video--video"></div>
+        </div>
+    </div>
+</div>
+
+    </main>
+    <script src="js/main.min.js"></script>
+</body>
+
+</html>
