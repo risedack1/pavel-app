@@ -25,7 +25,7 @@
                     </li>
                     <li class="header__icon">
                         <span class="visually-hidden">перейти на сайт ex</span>
-                        <a class="header__link" href="https://www.xe.com">
+                        <a class="header__link" href="https://www.xe.com" target="_blank">
                             <svg>
                                 <use xlink:href="images/sprite.svg#ex"></use>
                             </svg>
@@ -58,79 +58,73 @@
                         <button class="main-tasks__button button">
                             Добавить задачу, заметку
                         </button>
-                        <div class="main-tasks__make-task make-task">
-                            <input class="make-task__nameinput" type="text" name="task title"
-                                aria-label="введите название задания, заметки или ссылки" placeholder="Попробовать"
-                                required>
-                            <span class="make-task__span">
-                                Выберите список:
-                            </span>
-                            <div class="make-task__tabs tabs">
-                                <ul class="tabs__nav">
-                                    <li class="tabs-item tabs-item--task active" role="button">Задачи</li>
-                                    <li class="tabs-item tabs-item--note" role="button">Заметки</li>
-                                    <li class="tabs-item tabs-item--link" role="button">Ссылки</li>
-                                </ul>
-                                <div class="tabs__content">
-                                    <div class="tabs-block active tasks">
-                                        <span class="tasks__span">
-                                            Добавить задачу
-                                        </span>
-                                        <div class="tasks__textarea-wrapper">
-                                            <textarea class="tasks__textarea"
-                                                aria-label="ввеите задачи каждую с новой строчки"
-                                                placeholder="введите задачи (каждую с новой строчки)"></textarea>
-                                            <button class="tasks__textarea-button">
-                                                <span class="visually-hidden">
-                                                    добавить список
-                                                </span>
-                                                <svg>
-                                                    <use xlink:href="images/sprite.svg#plus"></use>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="tabs-block note">
-                                        <span class="note__span">
-                                            Добавить заметку
-                                        </span>
-                                        <div class="note__textarea-wrapper">
-                                            <textarea class="note__textarea"
-                                                aria-label="ввеите задачи каждую с новой строчки"
-                                                placeholder="Текст заметки"></textarea>
-                                            <button class="note__textarea-button">
-                                                <span class="visually-hidden">
-                                                    добавить заметку
-                                                </span>
-                                                <svg>
-                                                    <use xlink:href="images/sprite.svg#note-btn"></use>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="tabs-block links">
-                                        <span class="links__span">
-                                            Добавить ссылку
-                                        </span>
-                                        <div class="links__wrapper">
-                                            <div class="links__inputs">
-                                                <input class="links__input" type="text" required
-                                                    placeholder="URL ссылки">
+                        <div class="main-tasks__make-task make-task" data-simplebar>
+                            <div class="make-task__inner">
+                                <input class="make-task__nameinput" type="text" name="task title"
+                                    aria-label="введите название задания, заметки или ссылки" placeholder="Попробовать"
+                                    required>
+                                <span class="make-task__span">
+                                    Выберите список:
+                                </span>
+                                <div class="make-task__tabs tabs">
+                                    <ul class="tabs__nav">
+                                        <li class="tabs-item tabs-item--task active" role="button">Задачи</li>
+                                        <li class="tabs-item tabs-item--note" role="button">Заметки</li>
+                                        <li class="tabs-item tabs-item--link" role="button">Ссылки</li>
+                                    </ul>
+                                    <div class="tabs__content">
+                                        <div class="tabs-block active tasks">
+                                            <span class="tasks__span">
+                                                Добавить задачу
+                                            </span>
+                                            <div class="tasks__textarea-wrapper">
+                                                <textarea class="tasks__textarea"
+                                                    aria-label="ввеите задачи каждую с новой строчки"
+                                                    placeholder="введите задачи (каждую с новой строчки)"></textarea>
                                             </div>
-                                            <button class="links__btn">
-                                                <svg>
-                                                    <use xlink:href="images/sprite.svg#plus"></use>
-                                                </svg>
-                                            </button>
+                                        </div>
+                                        <div class="tabs-block note">
+                                            <span class="note__span">
+                                                Добавить заметку
+                                            </span>
+                                            <div class="note__textarea-wrapper">
+                                                <textarea class="note__textarea"
+                                                    aria-label="ввеите задачи каждую с новой строчки"
+                                                    placeholder="Текст заметки"></textarea>
+                                                <button class="note__textarea-button">
+                                                    <span class="visually-hidden">
+                                                        добавить заметку
+                                                    </span>
+                                                    <svg>
+                                                        <use xlink:href="images/sprite.svg#note-btn"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="tabs-block links">
+                                            <span class="links__span">
+                                                Добавить ссылку
+                                            </span>
+                                            <div class="links__wrapper">
+                                                <div class="links__inputs">
+                                                    <input class="links__input" type="text" required
+                                                        placeholder="URL ссылки">
+                                                </div>
+                                                <button class="links__btn">
+                                                    <svg>
+                                                        <use xlink:href="images/sprite.svg#plus"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <button class="make-task__button button">
+                                    Сохранить
+                                </button>
                             </div>
-                            <button class="make-task__button button">
-                                Сохранить
-                            </button>
                         </div>
-                        <div class="main-tasks__aside-inner">
+                        <div class="main-tasks__aside-inner" data-simplebar>
                             <ul class="main-tasks__list">
                                 <li class="main-tasks__item">
                                     <button class="main-tasks__item-button  main-tasks__item-button--tasks"
@@ -159,11 +153,12 @@
                                     </div>
                                 </li>
                                 <li class="main-tasks__item">
-                                    <button class="main-tasks__item-button  main-tasks__item-button--notes"
+                                    <button class="main-tasks__item-button  main-tasks__item-button--notes hidden"
                                         type="button">
                                         Заметки
                                     </button>
-                                    <div class="main-tasks__sublist-wrapper">
+                                    <div class="main-tasks__sublist-wrapper"
+                                        style="height: 0px; opacity: 0; visibility: hidden;">
                                         <ul class="main-tasks__sublist">
                                             <li class="main-tasks__subitem">
                                                 <button class="main-tasks__task" type="button">
@@ -185,11 +180,12 @@
                                     </div>
                                 </li>
                                 <li class="main-tasks__item">
-                                    <button class="main-tasks__item-button  main-tasks__item-button--links"
+                                    <button class="main-tasks__item-button  main-tasks__item-button--links hidden"
                                         type="button">
                                         Ссылки
                                     </button>
-                                    <div class="main-tasks__sublist-wrapper">
+                                    <div class="main-tasks__sublist-wrapper"
+                                        style="height: 0px; opacity: 0; visibility: hidden;">
                                         <ul class="main-tasks__sublist">
                                             <li class="main-tasks__subitem">
                                                 <button class="main-tasks__task" type="button">

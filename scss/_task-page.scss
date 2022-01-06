@@ -9,6 +9,10 @@
     border-bottom-left-radius: 10px;
     background-image: $linear-blue;
 
+    @include w($sm) {
+        padding: 10px;
+    }
+
     &__logo {
         margin-right: 14px;
     }
@@ -65,6 +69,10 @@
         border-radius: 5px;
         background-color: $white-bg;
         backdrop-filter: blur(87.7733px);
+
+        @include w($md) {
+            max-width: 100%;
+        }
     }
 
     &__aside-inner {
@@ -75,8 +83,21 @@
 
     &__make-task {
         position: absolute;
-        right: -132%;
+        right: -137%;
         top: 0;
+        z-index: 12;
+
+        @include w($lg) {
+            right: -116%;
+        }
+
+        @include w($md) {
+            right: 0;
+        }
+
+        @include w($sm) {
+            top: 10%;
+        }
     }
 
     &__button {
@@ -168,20 +189,34 @@
 }
 
 .make-task {
-    display: flex;
-    flex-direction: column;
     visibility: hidden;
     opacity: 0;
+    height: 100%;
+    max-height: 713px;
     padding: 18px 34px 22px 27px;
     width: 463px;
     height: 100%;
-    max-height: 713px;
-    overflow-y: auto;
     border: 1px solid #fff;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.4);
     transition: opacity 0.3s;
     backdrop-filter: blur(87.7733px);
+
+    @include w($lg) {
+        width: 400px;
+    }
+
+    @include w($sm) {
+        width: 100%;
+        height: 90%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
 
     &__nameinput {
         margin-bottom: 7px;
@@ -206,7 +241,23 @@
     }
 
     &__tabs {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
         margin-bottom: auto;
+
+        .tabs__content {
+            flex: 1 1 auto;
+        }
+
+        .tasks,
+        .tasks__textarea-wrapper {
+            height: 100%;
+        }
+
+        .tasks__textarea {
+            height: 90%;
+        }
     }
 
     &__button {
@@ -233,6 +284,7 @@
 
     &__textarea {
         padding: 14px;
+        margin-bottom: 10px;
         width: 100%;
         height: 200px;
         max-width: 356px;
@@ -366,4 +418,14 @@
             height: 26px;
         }
     }
+}
+
+// simplebar
+
+.simplebar-scrollbar:before {
+    width: 3px;
+}
+
+.simplebar-content {
+    height: 100%;
 }
