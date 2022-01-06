@@ -1,5 +1,4 @@
 .tabs {
-
     &__nav {
         margin-bottom: 18px;
     }
@@ -9,45 +8,44 @@
     position: relative;
     padding-left: 39px;
     font-size: 12px;
-    background-size: 16px 19px;
     background-position: 17px center;
+    background-size: 16px 19px;
     background-repeat: no-repeat;
     cursor: pointer;
 
-    &--task {
-        background-image: url('../images/icons/tasks.svg');
-    }
-
-    &--note {
-        background-image: url('../images/icons/notes.svg');
-    }
-
-    &--link {
-        background-image: url('../images/icons/links.svg');;
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        background-color: transparent;
+        transform: translateY(-50%);
     }
 
     &:not(:last-child) {
         margin-bottom: 6px;
     }
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 10px;
-        height: 10px;
-        transform: translateY(-50%);
-        border: 1px solid #fff;
-        border-radius: 50%;
-        background-color: transparent;
-    }
-
     &.active {
-        
         &::before {
             background-color: #fff;
         }
+    }
+
+    &--task {
+        background-image: url("../images/icons/tasks.svg");
+    }
+
+    &--note {
+        background-image: url("../images/icons/notes.svg");
+    }
+
+    &--link {
+        background-image: url("../images/icons/links.svg");
     }
 }
 

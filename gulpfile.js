@@ -78,6 +78,7 @@ function scripts() {
     return src([
             'node_modules/jquery/dist/jquery.js',
             'node_modules/flatpickr/dist/flatpickr.min.js',
+            'node_modules/simplebar/dist/simplebar.js',
             'app/js/main.js'
         ])
         .pipe(fileInclude({

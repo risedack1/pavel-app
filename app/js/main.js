@@ -188,10 +188,13 @@ const tasks = document.querySelector('.main-tasks__list');
 
 document.addEventListener('DOMContentLoaded', function () {
     const subList = document.querySelectorAll('.main-tasks__sublist');
-
+    // add height for sublists exept hidden sublists
     subList.forEach(el => {
         let subListHeight = el.clientHeight;
-        el.closest('.main-tasks__sublist-wrapper').style.height = `${subListHeight}px`;
+        // checking hidden class on button
+        if (!el.closest('.main-tasks__sublist-wrapper').previousSibling.previousSibling.classList.contains('hidden')) {
+            el.closest('.main-tasks__sublist-wrapper').style.height = `${subListHeight}px`;
+        }
     });
 });
 
