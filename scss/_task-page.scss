@@ -4,14 +4,10 @@
     display: flex;
     align-items: center;
     padding: 10px 40px;
-    background-image: $linear-blue;
     border: 1px solid #fff;
-    border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-
-    @include w($xsm) {
-        padding: 10px;
-    }
+    border-bottom-left-radius: 10px;
+    background-image: $linear-blue;
 
     &__logo {
         margin-right: 14px;
@@ -25,9 +21,11 @@
 
     &__icon {
         cursor: pointer;
+
         &:not(:last-child) {
             margin-right: 12px;
         }
+
         svg {
             display: block;
             width: 18px;
@@ -38,6 +36,7 @@
 
     &__log-out {
         margin-left: auto;
+
         svg {
             display: block;
             width: 23px;
@@ -45,40 +44,45 @@
             fill: $white;
         }
     }
+
+    @include w($xsm) {
+        padding: 10px;
+    }
 }
 
 //main-tasks
 
 .main-tasks {
     flex: 1 1 auto;
+
     &__aside {
         position: relative;
-        max-width: 355px;
+        padding: 20px 17px 20px 33px;
         width: 100%;
         height: calc(100vh - 46px);
-        padding: 20px 17px 20px 33px;
+        max-width: 355px;
         border: 1px solid $white;
         border-radius: 5px;
         background-color: $white-bg;
         backdrop-filter: blur(87.7733px);
     }
-    
+
     &__aside-inner {
-        overflow-y: auto;
         width: 100%;
         height: 80%;
+        overflow-y: auto;
     }
 
     &__make-task {
         position: absolute;
-        top: 0;
         right: -132%;
+        top: 0;
     }
 
     &__button {
-        background-image: $linear-blue;
         margin-bottom: 23px;
         margin-left: 15px;
+        background-image: $linear-blue;
     }
 
     &__item {
@@ -91,50 +95,50 @@
         padding: 10px 24px;
         padding-left: 44px;
         width: 100%;
-        text-align: left;
-        color: $white;
         border: none;
         border-radius: 5px;
-        background-color: transparent;
+        text-align: left;
+        color: $white;
         background-position: 16px center;
         background-size: 17px 19px;
         background-repeat: no-repeat;
+        background-color: transparent;
         transition: background-color 0.3s;
 
-        &--tasks {
-            background-image: url('../images/icons/tasks.svg');
-        }
-
-        &--notes {
-            background-image: url('../images/icons/notes.svg');
-        }
-
-        &--links {
-            background-image: url('../images/icons/links.svg');
+        &::after {
+            content: "";
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background-image: url("../images/icons/arrow-down.svg");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translateY(-50%);
         }
 
         &:hover {
             background-color: rgba(236, 236, 236, 0.2);
         }
 
-        &::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: 24px;
-            width: 16px;
-            height: 16px;
-            background-image: url('../images/icons/arrow-down.svg');
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-            transform: translateY(-50%);
+        &--tasks {
+            background-image: url("../images/icons/tasks.svg");
+        }
+
+        &--notes {
+            background-image: url("../images/icons/notes.svg");
+        }
+
+        &--links {
+            background-image: url("../images/icons/links.svg");
         }
     }
 
     &__sublist-wrapper {
-        overflow: hidden;
         visibility: visible;
+        overflow: hidden;
         transition: height 0.5s, opacity 0.5s, visibility 0.5s;
     }
 
@@ -144,67 +148,61 @@
 
     &__subitem {
         display: flex;
-        padding: 10px 18px 10px 38px;
         justify-content: space-between;
+        padding: 10px 18px 10px 38px;
     }
 
     &__task {
         position: relative;
         width: 100%;
+        border: none;
         text-align: left;
         color: $white;
-        border: none;
         background-color: transparent;
     }
 
     &__remove {
-        background-color: transparent;
         border: none;
+        background-color: transparent;
     }
 }
 
 .make-task {
     display: flex;
     flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
     padding: 18px 34px 22px 27px;
     width: 463px;
-    max-height: 713px;
     height: 100%;
-    opacity: 0;
-    visibility: hidden;
+    max-height: 713px;
+    overflow-y: auto;
     border: 1px solid #fff;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(87.7733px);
-    overflow-y: auto;
     transition: opacity 0.3s;
-
-    &.active {
-        opacity: 1;
-        visibility: visible;
-    }
+    backdrop-filter: blur(87.7733px);
 
     &__nameinput {
         margin-bottom: 7px;
         width: 100%;
-        font-size: 18px;
-        color: $white;
+        outline: transparent;
         border: none;
         border-bottom: 1px solid #fff;
+        font-size: 18px;
+        color: $white;
         background-color: transparent;
-        outline: transparent;
 
         &::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
-
     }
 
     &__span {
         display: block;
+        margin-bottom: 14px;
         font-size: 12px;
         line-height: 1;
-        margin-bottom: 14px;
     }
 
     &__tabs {
@@ -214,30 +212,35 @@
     &__button {
         background-image: $linear-blue;
     }
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 .tasks {
     &__span {
-        font-size: 12px;
         margin-bottom: 12px;
+        font-size: 12px;
     }
 
     &__textarea-wrapper {
         display: flex;
-        justify-content: space-between;
         align-items: flex-start;
+        justify-content: space-between;
     }
 
     &__textarea {
         padding: 14px;
-        max-width: 356px;
         width: 100%;
         height: 200px;
-        color: $white;
+        max-width: 356px;
+        outline: transparent;
         border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 3px;
+        color: $white;
         background-color: transparent;
-        outline: transparent;
         resize: none;
 
         &::placeholder {
@@ -254,6 +257,7 @@
         height: 50px;
         border: none;
         background-color: transparent;
+
         svg {
             display: block;
             width: 26px;
@@ -264,26 +268,26 @@
 
 .note {
     &__span {
-        font-size: 12px;
         margin-bottom: 12px;
+        font-size: 12px;
     }
 
     &__textarea-wrapper {
         display: flex;
-        justify-content: space-between;
         align-items: flex-start;
+        justify-content: space-between;
     }
 
     &__textarea {
         padding: 14px;
-        max-width: 356px;
         width: 100%;
         height: 200px;
-        color: $white;
+        max-width: 356px;
+        outline: transparent;
         border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 3px;
+        color: $white;
         background-color: transparent;
-        outline: transparent;
         resize: none;
 
         &::placeholder {
@@ -300,6 +304,7 @@
         height: 50px;
         border: none;
         background-color: transparent;
+
         svg {
             display: block;
             width: 26px;
@@ -310,8 +315,8 @@
 
 .links {
     &__span {
-        font-size: 12px;
         margin-bottom: 12px;
+        font-size: 12px;
     }
 
     &__wrapper {
@@ -320,26 +325,25 @@
     }
 
     &__inputs {
-        max-width: 356px;
         width: 100%;
+        max-width: 356px;
     }
 
     &__input {
         display: block;
         padding: 10px 14px;
         width: 100%;
+        outline: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 3px;
         font-size: 12px;
         line-height: 1;
         color: $white;
-        border-radius: 3px;
-        border: 1px solid rgba(255, 255, 255, 0.7);
         background-color: transparent;
-        outline: transparent;
 
         &::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
-
 
         &:not(:last-child) {
             margin-bottom: 26px;
@@ -355,6 +359,7 @@
         height: 50px;
         border: none;
         background-color: transparent;
+
         svg {
             display: block;
             width: 26px;
