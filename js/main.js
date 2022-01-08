@@ -227,10 +227,14 @@ tasks.addEventListener('click', function (e) {
 
 const taskBtn = document.querySelector('.main-tasks__button');
 const newTask = document.querySelector('.make-task');
+const closeTask = document.querySelector('.make-task__close');
 
 taskBtn.addEventListener('click', function () {
-    console.log('test');
     newTask.classList.toggle('active');
+});
+
+closeTask.addEventListener('click', function () {
+    newTask.classList.remove('active');
 });
 
 // Clock
@@ -244,7 +248,31 @@ function clock() {
 setInterval(clock, 1000);
 clock();
 
-flatpickr(".header__icon--calendar");
+let calendar = flatpickr(".header__icon--calendar", {
+    disableMobile: "true"
+});
+
+const calendarBtn = document.querySelector('.header__icon--calendar');
+
+calendarBtn.addEventListener('click', function () {
+    if (calendarBtn.classList.contains('active') && (calendarBtn.classList.contains('close'))) {
+        calendarBtn.classList.remove('close');
+        calendarBtn.classList.remove('active');
+        calendar.close();
+    } else if (calendarBtn.classList.contains('active')) {
+        calendarBtn.classList.add('close');
+    }
+});
+
+// document.addEventListener('click', function (e) {
+//     if (e.target.className != 'header__icon' && calendarBtn.classList.contains('close')) {
+//         console.log('test');
+//         calendarBtn.classList.remove('close');
+//     }
+// });
+
+
+
 
 $(function () {
 

@@ -73,6 +73,10 @@
         @include w($md) {
             max-width: 100%;
         }
+
+        @include w($sm) {
+            padding-left: 17px;
+        }
     }
 
     &__aside-inner {
@@ -202,6 +206,20 @@
     transition: opacity 0.3s;
     backdrop-filter: blur(87.7733px);
 
+    &__close {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        svg {
+            display: block;
+            width: 18px;
+            height: 18px;
+        }
+    }
+
     @include w($lg) {
         width: 400px;
     }
@@ -209,7 +227,7 @@
     @include w($sm) {
         width: 100%;
         height: 90%;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 1);
     }
 
     &__inner {
@@ -256,6 +274,7 @@
         }
 
         .tasks__textarea {
+            min-height: 200px;
             height: 90%;
         }
     }
