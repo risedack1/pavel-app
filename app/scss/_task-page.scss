@@ -10,11 +10,15 @@
     background-image: $linear-blue;
 
     @include w($sm) {
-        padding: 10px;
+        padding: 10px 14px;
     }
 
     &__logo {
         margin-right: 14px;
+
+        @include w($sm) {
+            margin-right: auto;
+        }
     }
 
     &__icons {
@@ -75,7 +79,8 @@
         }
 
         @include w($sm) {
-            padding-left: 17px;
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 
@@ -97,10 +102,6 @@
 
         @include w($md) {
             right: 0;
-        }
-
-        @include w($sm) {
-            top: 10%;
         }
     }
 
@@ -174,7 +175,7 @@
     &__subitem {
         display: flex;
         justify-content: space-between;
-        padding: 10px 18px 10px 38px;
+        padding: 5px 18px 5px 43px;
     }
 
     &__task {
@@ -187,15 +188,22 @@
     }
 
     &__remove {
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        background-image: url('../images/remove-icon.png');
         border: none;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
         background-color: transparent;
+        
     }
 }
 
 .make-task {
     visibility: hidden;
     opacity: 0;
-    height: 100%;
     max-height: 713px;
     padding: 18px 34px 22px 27px;
     width: 463px;
@@ -224,10 +232,29 @@
         width: 400px;
     }
 
-    @include w($sm) {
+    @include w($md) {
+        max-height: none;
         width: 100%;
-        height: 90%;
-        background-color: rgba(0, 0, 0, 1);
+        background-color: transparent;
+        background-image: url('../images/sign-up-bg.jpg'),radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(23, 24, 24, 0.2) 0%, rgba(17, 23, 27, 0.045) 77.08%, rgba(0, 0, 0, 0) 100%);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        backdrop-filter: blur(100px);
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.4;
+        }
     }
 
     &__inner {
@@ -266,6 +293,10 @@
 
         .tabs__content {
             flex: 1 1 auto;
+
+            &--input {
+                flex: 0 0 auto;
+            }
         }
 
         .tasks,
@@ -316,6 +347,10 @@
 
         &::placeholder {
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        @include w($sm) {
+            max-width: none;
         }
     }
 
@@ -393,6 +428,7 @@
     &__wrapper {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 20px;
     }
 
     &__inputs {
@@ -417,7 +453,25 @@
         }
 
         &:not(:last-child) {
-            margin-bottom: 26px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__item {
+        display: block;
+        padding: 10px 14px;
+        max-width: 356px;
+        width: 100%;
+        outline: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 3px;
+        font-size: 12px;
+        line-height: 1;
+        color: $white;
+        cursor: pointer;
+
+        &:not(:last-child) {
+            margin-bottom: 15px;
         }
     }
 

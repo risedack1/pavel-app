@@ -65,13 +65,21 @@
                                 </svg>
                             </button>
                             <div class="make-task__inner">
-                                <input class="make-task__nameinput" type="text" name="task title"
-                                    aria-label="введите название задания, заметки или ссылки" placeholder="Попробовать"
-                                    required>
-                                <span class="make-task__span">
-                                    Выберите список:
-                                </span>
                                 <div class="make-task__tabs tabs">
+                                    <div class="tabs__content tabs__content--input">
+                                        <div class="tabs-block tasks active">
+                                        </div>
+                                        <div class="tabs-block notes">
+                                            <input class="make-task__nameinput" type="text" name="task title"
+                                                aria-label="введите название заметки" placeholder="Название заметки"
+                                                required>
+                                        </div>
+                                        <div class="tabs-block links">
+                                        </div>
+                                    </div>
+                                    <span class="make-task__span">
+                                        Выберите список:
+                                    </span>
                                     <ul class="tabs__nav">
                                         <li class="tabs-item tabs-item--task active" role="button">Задачи</li>
                                         <li class="tabs-item tabs-item--note" role="button">Заметки</li>
@@ -112,7 +120,9 @@
                                             </span>
                                             <div class="links__wrapper">
                                                 <div class="links__inputs">
-                                                    <input class="links__input" type="text" required
+                                                    <input class="links__input links__input--name" type="text" required
+                                                        placeholder="Название ссылки">
+                                                    <input class="links__input links__input--link" type="text" required
                                                         placeholder="URL ссылки">
                                                 </div>
                                                 <button class="links__btn">
@@ -120,6 +130,9 @@
                                                         <use xlink:href="images/sprite.svg#plus"></use>
                                                     </svg>
                                                 </button>
+                                            </div>
+                                            <div class="links__list">
+
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +156,6 @@
                                                     Welcome
                                                 </button>
                                                 <button class="main-tasks__remove">
-                                                    <img src="images/remove-icon.png" alt="удалить задачу">
                                                 </button>
                                             </li>
                                             <li class="main-tasks__subitem">
@@ -151,7 +163,6 @@
                                                     Попробовать Доски 1
                                                 </button>
                                                 <button class="main-tasks__remove">
-                                                    <img src="images/remove-icon.png" alt="удалить задачу">
                                                 </button>
                                             </li>
                                         </ul>
@@ -170,7 +181,6 @@
                                                     Добро пожаловать
                                                 </button>
                                                 <button class="main-tasks__remove">
-                                                    <img src="images/remove-icon.png" alt="удалить задачу">
                                                 </button>
                                             </li>
                                             <li class="main-tasks__subitem">
@@ -178,7 +188,6 @@
                                                     Попробовать
                                                 </button>
                                                 <button class="main-tasks__remove">
-                                                    <img src="images/remove-icon.png" alt="удалить задачу">
                                                 </button>
                                             </li>
                                         </ul>
@@ -191,13 +200,12 @@
                                     </button>
                                     <div class="main-tasks__sublist-wrapper"
                                         style="height: 0px; opacity: 0; visibility: hidden;">
-                                        <ul class="main-tasks__sublist">
+                                        <ul class="main-tasks__sublist main-tasks__sublist--links">
                                             <li class="main-tasks__subitem">
                                                 <button class="main-tasks__task" type="button">
                                                     Example
                                                 </button>
                                                 <button class="main-tasks__remove">
-                                                    <img src="images/remove-icon.png" alt="удалить задачу">
                                                 </button>
                                             </li>
                                             <li class="main-tasks__subitem">
@@ -205,7 +213,6 @@
                                                     Пример
                                                 </button>
                                                 <button class="main-tasks__remove">
-                                                    <img src="images/remove-icon.png" alt="удалить задачу">
                                                 </button>
                                             </li>
                                         </ul>
