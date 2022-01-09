@@ -287,6 +287,7 @@ linksBtn.addEventListener('click', function () {
 
 taskButton.addEventListener('click', function () {
     saveLinks();
+    // addLinksToCard();
 });
 
 function addNewLink() {
@@ -315,7 +316,6 @@ function saveLinks() {
     let removeBtn;
 
     if (links) {
-
         links.forEach(el => {
             savedLinkItem = document.createElement('li');
             savedLinkItem.classList.add('main-tasks__subitem');
@@ -345,17 +345,45 @@ function saveLinks() {
     }
 }
 
+
+function addLinksToCard() {
+    let cardLinksList = document.querySelector('.link-card .links__list');
+    let mainLinksList = document.querySelector('.main-tasks__sublist--links');
+    let cardLinksListCh = document.querySelectorAll('.link-card .links__list *');
+    cardLinksListCh.forEach(el => {
+        el.remove();
+    });
+    cardLinksList.appendChild(mainLinksList.cloneNode(true));
+    console.log(cardLinksListCh);
+
+}
+
+let targetParentList;
+
+removeLink();
+
 function removeLink() {
     removeButtons.forEach(el => {
         el.addEventListener('click', function (e) {
             target = e.target;
             targetParent = target.closest('.main-tasks__subitem');
+            targetParentList = target.closest('.main-tasks__sublist').offsetHeight - 35;
+            target.closest('.main-tasks__sublist-wrapper').style.height = `${targetParentList}px`;
+            console.log(targetParentList);
             targetParent.remove();
         });
     });
 }
 
+// resize window
 
+window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 
 $(function () {
