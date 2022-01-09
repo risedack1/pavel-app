@@ -345,17 +345,32 @@ function saveLinks() {
     }
 }
 
+let targetParentList;
+
+removeLink();
+
 function removeLink() {
     removeButtons.forEach(el => {
         el.addEventListener('click', function (e) {
             target = e.target;
             targetParent = target.closest('.main-tasks__subitem');
+            targetParentList = target.closest('.main-tasks__sublist').offsetHeight - 35;
+            target.closest('.main-tasks__sublist-wrapper').style.height = `${targetParentList}px`;
+            console.log(targetParentList);
             targetParent.remove();
         });
     });
 }
 
+// resize window
 
+window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 
 $(function () {

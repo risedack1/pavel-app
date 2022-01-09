@@ -67,7 +67,7 @@
         position: relative;
         padding: 20px 17px 20px 33px;
         width: 100%;
-        height: calc(100vh - 46px);
+        height: calc((var(--vh, 1vh) * 100) - 46px);
         max-width: 355px;
         border: 1px solid $white;
         border-radius: 5px;
