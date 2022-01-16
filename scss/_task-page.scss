@@ -31,7 +31,7 @@
         cursor: pointer;
 
         &:not(:last-child) {
-            margin-right: 12px;
+            margin-right: 18px;
         }
 
         svg {
@@ -107,7 +107,7 @@
 
     &__link {
         position: absolute;
-        right: -300%;
+        right: -137%;
         top: 0;
         z-index: 12;
 
@@ -190,8 +190,16 @@
     &__subitem {
         display: flex;
         justify-content: space-between;
-        padding: 5px 18px 5px 43px;
+        padding: 5px 18px 5px 23px;
+        margin-left: 23px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
     }
+
 
     &__task {
         position: relative;
@@ -216,9 +224,9 @@
     }
 }
 
-.link-card {
-    // visibility: hidden;
-    // opacity: 0;
+.card {
+    visibility: hidden;
+    opacity: 0;
     max-height: 713px;
     padding: 18px 34px 22px 27px;
     width: 463px;
@@ -228,6 +236,12 @@
     background-color: rgba(0, 0, 0, 0.4);
     transition: opacity 0.3s;
     backdrop-filter: blur(87.7733px);
+    transition: opacity 0.5s, visibility 0.5s;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
 
     &__close {
         position: absolute;
@@ -555,6 +569,7 @@
 
 .links {
     &__span {
+        display: block;
         margin-bottom: 12px;
         font-size: 12px;
     }
@@ -593,19 +608,25 @@
 
     &__item {
         display: block;
-        padding: 10px 14px;
+        padding-left: 18px;
         max-width: 356px;
         width: 100%;
         outline: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        border-radius: 3px;
         font-size: 12px;
         line-height: 1;
         color: $white;
+        background-image: url('../images/icons/links-white.svg');
+        background-position: left center;
+        background-size: contain;
+        background-repeat: no-repeat;
         cursor: pointer;
 
         &:not(:last-child) {
             margin-bottom: 15px;
+        }
+
+        &::before {
+            content: '-';
         }
     }
 
