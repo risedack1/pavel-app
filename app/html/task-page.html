@@ -75,6 +75,9 @@
                                                 required>
                                         </div>
                                         <div class="tabs-block links">
+                                            <input class="make-task__nameinput make-task__nameinput--links" type="text"
+                                                name="task title" aria-label="введите название заметки"
+                                                placeholder="Название списка" required>
                                         </div>
                                     </div>
                                     <span class="make-task__span">
@@ -142,6 +145,79 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="main-tasks__link card" data-simplebar>
+                            <button class="card__close">
+                                <svg>
+                                    <use xlink:href="images/sprite.svg#close"></use>
+                                </svg>
+                            </button>
+                            <div class="card__inner">
+                                <div class="card__tabs tabs">
+                                    <div class="tabs__content tabs__content--input">
+                                        <div class="tabs-block tasks">
+                                        </div>
+                                        <div class="tabs-block notes">
+                                            <input class="card__nameinput" readonly type="text" name="task title"
+                                                aria-label="введите название заметки" placeholder="Название заметки"
+                                                required>
+                                        </div>
+                                        <div class="tabs-block links active">
+                                            <input class="card__nameinput card__nameinput--links" type="text"
+                                                name="task title" readonly required>
+                                        </div>
+                                    </div>
+                                    <span class="card__span">
+                                        Выберите список:
+                                    </span>
+                                    <ul class="tabs__nav">
+                                        <li class="tabs-item tabs-item--task" role="button">Задачи</li>
+                                        <li class="tabs-item tabs-item--note" role="button">Заметки</li>
+                                        <li class="tabs-item tabs-item--link active" role="button">Ссылки</li>
+                                    </ul>
+                                    <div class="tabs__content">
+                                        <div class="tabs-block tasks">
+                                            <span class="tasks__span">
+                                                Добавить задачу
+                                            </span>
+                                            <div class="tasks__textarea-wrapper">
+                                                <textarea class="tasks__textarea"
+                                                    aria-label="ввеите задачи каждую с новой строчки"
+                                                    placeholder="введите задачи (каждую с новой строчки)"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tabs-block note">
+                                            <span class="note__span">
+                                                Добавить заметку
+                                            </span>
+                                            <div class="note__textarea-wrapper">
+                                                <textarea class="note__textarea"
+                                                    aria-label="ввеите задачи каждую с новой строчки"
+                                                    placeholder="Текст заметки"></textarea>
+                                                <button class="note__textarea-button">
+                                                    <span class="visually-hidden">
+                                                        добавить заметку
+                                                    </span>
+                                                    <svg>
+                                                        <use xlink:href="images/sprite.svg#note-btn"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="tabs-block active links">
+                                            <span class="links__span">
+                                                Список ссылок
+                                            </span>
+                                            <div class="links__list links__list--card">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="make-task__button button">
+                                    Сохранить
+                                </button>
+                            </div>
+                        </div>
                         <div class="main-tasks__aside-inner" data-simplebar>
                             <ul class="main-tasks__list">
                                 <li class="main-tasks__item">
@@ -169,12 +245,11 @@
                                     </div>
                                 </li>
                                 <li class="main-tasks__item">
-                                    <button class="main-tasks__item-button  main-tasks__item-button--notes hidden"
+                                    <button class="main-tasks__item-button  main-tasks__item-button--notes"
                                         type="button">
                                         Заметки
                                     </button>
-                                    <div class="main-tasks__sublist-wrapper"
-                                        style="height: 0px; opacity: 0; visibility: hidden;">
+                                    <div class="main-tasks__sublist-wrapper">
                                         <ul class="main-tasks__sublist">
                                             <li class="main-tasks__subitem">
                                                 <button class="main-tasks__task" type="button">
@@ -194,12 +269,11 @@
                                     </div>
                                 </li>
                                 <li class="main-tasks__item">
-                                    <button class="main-tasks__item-button  main-tasks__item-button--links hidden"
+                                    <button class="main-tasks__item-button  main-tasks__item-button--links"
                                         type="button">
                                         Ссылки
                                     </button>
-                                    <div class="main-tasks__sublist-wrapper"
-                                        style="height: 0px; opacity: 0; visibility: hidden;">
+                                    <div class="main-tasks__sublist-wrapper">
                                         <ul class="main-tasks__sublist main-tasks__sublist--links">
                                         </ul>
                                     </div>

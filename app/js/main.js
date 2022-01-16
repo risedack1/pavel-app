@@ -232,6 +232,10 @@ const newTask = document.querySelector('.make-task');
 const closeTask = document.querySelector('.make-task__close');
 
 taskBtn.addEventListener('click', function () {
+    const card = document.querySelector('.card');
+    if (card.classList.contains('active')) {
+        card.classList.remove('active');
+    }
     newTask.classList.toggle('active');
 });
 
@@ -279,15 +283,117 @@ calendarBtn.addEventListener('click', function () {
 
 const linksBtn = document.querySelector('.links__btn');
 const taskButton = document.querySelector('.make-task__button');
+const closeCardButton = document.querySelector('.card__close');
+let linksItem;
 let removeButtons = document.querySelectorAll('.main-tasks__remove');
+let mainLinksObj = {};
+
 
 linksBtn.addEventListener('click', function () {
     addNewLink();
 });
 
 taskButton.addEventListener('click', function () {
-    saveLinks();
+    createCardButton();
+    saveLinks(removeInfo);
+    createCard();
+    setSublistLinksHeight();
 });
+
+closeCardButton.addEventListener('click', function () {
+    const card = document.querySelector('.card');
+    if (card.classList.contains('active')) {
+        card.classList.remove('active');
+    }
+});
+
+function setSublistLinksHeight() {
+    const sublist = document.querySelector('.main-tasks__sublist--links');
+    const subListWrapper = sublist.closest('.main-tasks__sublist-wrapper');
+    const subListHeight = sublist.clientHeight;
+
+    subListWrapper.style.height = `${subListHeight}px`;
+
+    console.log(subListHeight);
+}
+
+function createCard() {
+    linksItem = document.querySelectorAll('.main-tasks__subitem--link');
+
+    linksItem.forEach(el => {
+        el.addEventListener('click', function (e) {
+            const cardInput = document.querySelector('.card__nameinput--links');
+            const linksList = document.querySelector('.links__list--card');
+            const card = document.querySelector('.card');
+            const makeTask = document.querySelector('.make-task');
+            let cardLinks = document.querySelectorAll('.links__list--card .links__item');
+            let target = e.target;
+            let targetValue = target.textContent;
+            cardInput.value = mainLinksObj[targetValue]['nameList'];
+            let targetLinks = mainLinksObj[targetValue]['linksItem'];
+            if (cardLinks) {
+                cardLinks.forEach(el => {
+                    el.remove();
+                });
+            }
+            targetLinks.forEach(el => {
+                linksList.append(el);
+            });
+            if (makeTask.classList.contains('active')) {
+                makeTask.classList.remove('active');
+            }
+            card.classList.add('active');
+        });
+    });
+}
+
+function saveLinks(callback) {
+    const objLinks = makeMainLinksObj();
+    let {
+        nameList,
+        links
+    } = objLinks;
+
+    mainLinksObj[nameList] = {};
+    mainLinksObj[nameList]['nameList'] = nameList;
+    mainLinksObj[nameList]['linksItem'] = links;
+
+    callback();
+
+    return
+}
+
+function removeInfo() {
+    const links = document.querySelectorAll('.links__list a');
+    const inputValue = document.querySelector('.make-task__nameinput--links');
+    inputValue.value = '';
+    links.forEach(el => {
+        el.remove();
+    });
+}
+
+function makeMainLinksObj() {
+    const newLinks = document.querySelectorAll('.make-task .links__item');
+    const objLinks = {
+        nameList: '',
+        links: [],
+    }
+
+    objLinks.nameList = addNameLinksToObj();
+    objLinks.links = newLinks;
+
+    return objLinks;
+};
+
+function addNameLinksToObj() {
+    const inputLinkslist = document.querySelector('.make-task__nameinput--links');
+
+    if (inputLinkslist.value != '') {
+        const linksListName = inputLinkslist.value;
+        return linksListName;
+    }
+
+}
 
 function addNewLink() {
     const linksInput = document.querySelector('.links__input--link');
@@ -301,49 +407,50 @@ function addNewLink() {
         linksList.prepend(link);
         link.setAttribute('href', linksInput.value);
         link.innerHTML = linksInputName.value;
-        console.log(linksInput.value);
         linksInput.value = '';
         linksInputName.value = '';
     }
 }
 
-function saveLinks() {
+function createCardButton() {
     const links = document.querySelectorAll('.links__item');
     const linksSublist = document.querySelector('.main-tasks__sublist--links');
+    const mainObj = makeMainLinksObj();
+    const mainObjName = mainObj.nameList;
     let savedLinkItem;
     let savedLink;
     let removeBtn;
 
-    if (links) {
+    if (links.length != 0) {
+        savedLinkItem = document.createElement('li');
+        savedLinkItem.classList.add('main-tasks__subitem');
+        savedLinkItem.classList.add('main-tasks__subitem--link');
+        linksSublist.prepend(savedLinkItem);
+        savedLinkItem.setAttribute('role', 'button');
 
-        links.forEach(el => {
-            savedLinkItem = document.createElement('li');
-            savedLinkItem.classList.add('main-tasks__subitem');
-            linksSublist.prepend(savedLinkItem);
+        savedLinkItem.textContent = mainObjName;
 
-            let elText = el.textContent;
-            let elLink = el.getAttribute('href');
-            console.log(elText);
+        removeBtn = document.createElement('button');
+        removeBtn.classList.add('main-tasks__remove');
+        savedLinkItem.append(removeBtn);
 
-            savedLink = document.createElement('a');
-            savedLink.classList.add('main-tasks__task');
-            savedLinkItem.prepend(savedLink);
-            savedLink.setAttribute('href', `${elLink}`);
-            savedLink.setAttribute('target', `_blank`);
-            savedLink.textContent = elText;
+        removeButtons = document.querySelectorAll('.main-tasks__remove');
 
-            removeBtn = document.createElement('button');
-            removeBtn.classList.add('main-tasks__remove');
-            savedLinkItem.append(removeBtn);
-
-            removeButtons = document.querySelectorAll('.main-tasks__remove');
-
-            removeLink();
-
-            el.remove();
-        });
+        removeLink();
     }
 }
+
+//????????????????????????????
+function addLinksToCard() {
+    let cardLinksList = document.querySelector('.link-card .links__list');
+    let mainLinksList = document.querySelector('.main-tasks__sublist--links');
+    let cardLinksListCh = document.querySelectorAll('.link-card .links__list *');
+    cardLinksListCh.forEach(el => {
+        el.remove();
+    });
+    cardLinksList.appendChild(mainLinksList.cloneNode(true));
+}
+
 
 let targetParentList;
 
@@ -356,7 +463,6 @@ function removeLink() {
             targetParent = target.closest('.main-tasks__subitem');
             targetParentList = target.closest('.main-tasks__sublist').offsetHeight - 35;
             target.closest('.main-tasks__sublist-wrapper').style.height = `${targetParentList}px`;
-            console.log(targetParentList);
             targetParent.remove();
         });
     });
