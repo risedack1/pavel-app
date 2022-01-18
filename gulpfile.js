@@ -81,11 +81,13 @@ function scripts() {
             'node_modules/simplebar/dist/simplebar.js',
             'app/js/main.js'
         ])
+        .pipe(sourcemap.init())
         .pipe(fileInclude({
             prefix: '@'
         }))
         .pipe(concat('main.min.js'))
         .pipe(uglify())
+        .pipe(sourcemap.write('.'))
         .pipe(dest('app/js'))
         .pipe(browserSync.stream())
 }
@@ -143,11 +145,11 @@ function build() {
         ], {
             base: 'app'
         })
-        .pipe(dest('dist'))
+        .pipe(dest('dist'));
 }
 
 function cleanDist() {
-    return del(['dist', 'app/fonts/*.ttf'])
+    return del(['dist', 'app/fonts/*.ttf']);
 }
 
 function watching() {
