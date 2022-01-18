@@ -236,6 +236,10 @@ taskBtn.addEventListener('click', function () {
     if (card.classList.contains('active')) {
         card.classList.remove('active');
     }
+    if (document.querySelector('.main-tasks__subitem--link.active')) {
+        const activeLinkButton = document.querySelector('.main-tasks__subitem--link.active');
+        activeLinkButton.classList.remove('active');
+    }
     newTask.classList.toggle('active');
 });
 
@@ -279,7 +283,7 @@ calendarBtn.addEventListener('click', function () {
 //     }
 // });
 
-// add link
+// add link and create the card
 
 const linksBtn = document.querySelector('.links__btn');
 const taskButton = document.querySelector('.make-task__button');
@@ -303,7 +307,9 @@ taskButton.addEventListener('click', function () {
 closeCardButton.addEventListener('click', function () {
     const card = document.querySelector('.card');
     if (card.classList.contains('active')) {
+        const activeLinkButton = document.querySelector('.main-tasks__subitem--link.active');
         card.classList.remove('active');
+        activeLinkButton.classList.remove('active');
     }
 });
 
@@ -342,6 +348,10 @@ function createCard() {
             if (makeTask.classList.contains('active')) {
                 makeTask.classList.remove('active');
             }
+            for (let i = 0; i < linksItem.length; i++) {
+                linksItem[i].classList.remove('active');
+            }
+            target.classList.add('active');
             card.classList.add('active');
         });
     });
@@ -418,6 +428,7 @@ function createCardButton() {
     const mainObj = makeMainLinksObj();
     const mainObjName = mainObj.nameList;
     let savedLinkItem;
+    let savedLinkSpan;
     let savedLink;
     let removeBtn;
 
@@ -425,10 +436,12 @@ function createCardButton() {
         savedLinkItem = document.createElement('li');
         savedLinkItem.classList.add('main-tasks__subitem');
         savedLinkItem.classList.add('main-tasks__subitem--link');
+        savedLinkSpan = document.createElement('span');
         linksSublist.prepend(savedLinkItem);
+        savedLinkItem.prepend(savedLinkSpan);
         savedLinkItem.setAttribute('role', 'button');
 
-        savedLinkItem.textContent = mainObjName;
+        savedLinkSpan.textContent = mainObjName;
 
         removeBtn = document.createElement('button');
         removeBtn.classList.add('main-tasks__remove');
@@ -466,6 +479,106 @@ function removeLink() {
             targetParent.remove();
         });
     });
+}
+
+//edit links
+
+const editLinkButton = document.querySelector('.card-edit--links');
+const cardButton = document.querySelector('.card__button');
+
+editLinkButton.addEventListener('click', function () {
+    editLinksCard(changeLinksListData);
+});
+
+function changeLinksListData() {
+    const title = document.querySelector('.card__nameinput--links');
+    const linksNameValue = document.querySelectorAll('.links__input--name-change');
+    const linksHrefValue = document.querySelectorAll('.links__input--href-change');
+    const titleValue = title.value;
+    console.log(titleValue);
+
+    cardButton.addEventListener('click', function () {
+        const linkButton = document.querySelector('.main-tasks__subitem--link.active > span');
+        let changedTitleValue = title.value;
+
+        //change nameList
+        mainLinksObj[changedTitleValue] = mainLinksObj[titleValue];
+        delete mainLinksObj[titleValue];
+
+        // if (mainLinksObj[titleValue] !== mainLinksObj[changedTitleValue]) {
+        //     Object.defineProperty(mainLinksObj, changedTitleValue,
+        //         Object.getOwnPropertyDescriptor(mainLinksObj, titleValue));
+        //     delete mainLinksObj[titleValue];
+        // }
+        mainLinksObj[changedTitleValue]['nameList'] = changedTitleValue;
+        console.log(mainLinksObj[changedTitleValue]['nameList']);
+        linkButton.textContent = mainLinksObj[changedTitleValue]['nameList'];
+
+        // change links
+        linksNameValue.forEach(el => {
+            let link = el.nextSibling.nextSibling;
+            let changedLinksNameValue = el.value;
+            link.textContent = changedLinksNameValue;
+            el.remove();
+        });
+
+        linksHrefValue.forEach(el => {
+            let link = el.nextSibling;
+            let changedLinksHrefValue = el.value;
+            link.setAttribute('href', changedLinksHrefValue);
+            el.remove();
+        });
+
+        // add new link array to main array
+        const newLinksArr = document.querySelectorAll('.links__item');
+        console.log(newLinksArr);
+
+        mainLinksObj[changedTitleValue]['linksItem'] = newLinksArr;
+
+        console.log(mainLinksObj);
+        title.setAttribute('readonly', 'true');
+        cardButton.classList.remove('active');
+
+    });
+}
+
+
+function editLinksCard(callback) {
+    const title = document.querySelector('.card__nameinput--links');
+    const links = document.querySelectorAll('.links__item');
+
+    title.removeAttribute('readonly');
+
+    let createInputName = function () {
+        const inputName = document.createElement('input');
+
+        inputName.classList.add('links__input');
+        inputName.classList.add('links__input--name-change');
+        inputName.setAttribute('placeholder', 'Введите имя ссылки');
+
+        return inputName;
+    }
+
+    let createInputHref = function () {
+        const inputHref = document.createElement('input');
+
+        inputHref.classList.add('links__input');
+        inputHref.classList.add('links__input--href-change');
+        inputHref.setAttribute('placeholder', 'Введите новую ссылку');
+
+        return inputHref;
+    }
+
+
+
+    links.forEach(el => {
+        el.before(createInputName());
+        el.before(createInputHref());
+    });
+
+    cardButton.classList.add('active');
+
+    callback();
 }
 
 // resize window
