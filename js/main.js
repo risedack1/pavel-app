@@ -474,8 +474,11 @@ function removeLink() {
         el.addEventListener('click', function (e) {
             target = e.target;
             targetParent = target.closest('.main-tasks__subitem');
+            const targetParentText = targetParent.textContent;
+            delete mainLinksObj[targetParentText];
             targetParentList = target.closest('.main-tasks__sublist').offsetHeight - 35;
             target.closest('.main-tasks__sublist-wrapper').style.height = `${targetParentList}px`;
+            console.log(mainLinksObj);
             targetParent.remove();
         });
     });
@@ -495,7 +498,6 @@ function changeLinksListData() {
     const linksNameValue = document.querySelectorAll('.links__input--name-change');
     const linksHrefValue = document.querySelectorAll('.links__input--href-change');
     const titleValue = title.value;
-    console.log(titleValue);
 
     cardButton.addEventListener('click', function () {
         const linkButton = document.querySelector('.main-tasks__subitem--link.active > span');
@@ -511,21 +513,25 @@ function changeLinksListData() {
         //     delete mainLinksObj[titleValue];
         // }
         mainLinksObj[changedTitleValue]['nameList'] = changedTitleValue;
-        console.log(mainLinksObj[changedTitleValue]['nameList']);
-        linkButton.textContent = mainLinksObj[changedTitleValue]['nameList'];
+        let nameList = mainLinksObj[changedTitleValue]['nameList'];
+        linkButton.innerHTML = nameList;
 
         // change links
         linksNameValue.forEach(el => {
-            let link = el.nextSibling.nextSibling;
-            let changedLinksNameValue = el.value;
-            link.textContent = changedLinksNameValue;
+            if (el.value !== '') {
+                let link = el.nextSibling.nextSibling;
+                let changedLinksNameValue = el.value;
+                link.textContent = changedLinksNameValue;
+            }
             el.remove();
         });
 
         linksHrefValue.forEach(el => {
-            let link = el.nextSibling;
-            let changedLinksHrefValue = el.value;
-            link.setAttribute('href', changedLinksHrefValue);
+            if (el.value !== '') {
+                let link = el.nextSibling;
+                let changedLinksHrefValue = el.value;
+                link.setAttribute('href', changedLinksHrefValue);
+            }
             el.remove();
         });
 
@@ -534,10 +540,9 @@ function changeLinksListData() {
         console.log(newLinksArr);
 
         mainLinksObj[changedTitleValue]['linksItem'] = newLinksArr;
-
-        console.log(mainLinksObj);
         title.setAttribute('readonly', 'true');
         cardButton.classList.remove('active');
+        editLinkButton.classList.remove('hidden');
 
     });
 }
@@ -548,23 +553,26 @@ function editLinksCard(callback) {
     const links = document.querySelectorAll('.links__item');
 
     title.removeAttribute('readonly');
+    editLinkButton.classList.add('hidden');
 
-    let createInputName = function () {
+    let createInputName = function (linkName) {
         const inputName = document.createElement('input');
 
         inputName.classList.add('links__input');
         inputName.classList.add('links__input--name-change');
         inputName.setAttribute('placeholder', 'Введите имя ссылки');
+        inputName.value = linkName;
 
         return inputName;
     }
 
-    let createInputHref = function () {
+    let createInputHref = function (linkHref) {
         const inputHref = document.createElement('input');
 
         inputHref.classList.add('links__input');
         inputHref.classList.add('links__input--href-change');
-        inputHref.setAttribute('placeholder', 'Введите новую ссылку');
+        inputHref.setAttribute('placeholder', 'Введите ссылку');
+        inputHref.value = linkHref;
 
         return inputHref;
     }
@@ -572,9 +580,13 @@ function editLinksCard(callback) {
 
 
     links.forEach(el => {
-        el.before(createInputName());
-        el.before(createInputHref());
+        elText = el.textContent;
+        elHref = el.getAttribute('href');
+        el.before(createInputName(elText));
+        el.before(createInputHref(elHref));
     });
+
+    title.focus();
 
     cardButton.classList.add('active');
 
