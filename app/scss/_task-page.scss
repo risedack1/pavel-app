@@ -342,7 +342,7 @@
 
         .tasks__textarea {
             min-height: 200px;
-            height: 90%;
+            height: 50%;
         }
     }
 
@@ -464,12 +464,12 @@
 
         .tasks,
         .tasks__textarea-wrapper {
-            height: 100%;
+            height: 95%;
         }
 
         .tasks__textarea {
             min-height: 200px;
-            height: 90%;
+            height: 100%;
         }
     }
 
@@ -484,15 +484,15 @@
 }
 
 .tasks {
+    height: 90%;
     &__span {
+        display: block;
         margin-bottom: 12px;
         font-size: 12px;
     }
 
     &__textarea-wrapper {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
+        height: 100%;
     }
 
     &__textarea {
@@ -507,6 +507,7 @@
         color: $white;
         background-color: transparent;
         resize: none;
+        cursor: text;
 
         &::placeholder {
             color: rgba(255, 255, 255, 0.7);
@@ -531,6 +532,39 @@
             display: block;
             width: 26px;
             height: 26px;
+        }
+    }
+
+    &__item {
+        position: relative;
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        padding-left: 30px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #fff;
+        text-align: left;
+        color: $white;
+        background-color: $white-bg;
+
+        &--checked {
+            text-decoration: line-through;
+
+            &::before {
+                background-color: $white;
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            border: 1px solid $white;
         }
     }
 }
