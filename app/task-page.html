@@ -70,9 +70,9 @@
                                         <div class="tabs-block tasks active">
                                         </div>
                                         <div class="tabs-block notes">
-                                            <input class="make-task__nameinput" type="text" name="task title"
-                                                aria-label="введите название заметки" placeholder="Название заметки"
-                                                required>
+                                            <input class="make-task__nameinput make-task__nameinput--notes" type="text"
+                                                name="task title" aria-label="введите название заметки"
+                                                placeholder="Название заметки" required>
                                         </div>
                                         <div class="tabs-block links">
                                             <input class="make-task__nameinput make-task__nameinput--links" type="text"
@@ -157,9 +157,9 @@
                                         <div class="tabs-block tasks">
                                         </div>
                                         <div class="tabs-block notes">
-                                            <input class="card__nameinput" readonly type="text" name="task title"
-                                                aria-label="введите название заметки" placeholder="Название заметки"
-                                                required>
+                                            <input class="card__nameinput card__nameinput--notes" readonly type="text"
+                                                name="task title" aria-label="введите название заметки"
+                                                placeholder="Название заметки" required>
                                         </div>
                                         <div class="tabs-block links active">
                                             <input class="card__nameinput card__nameinput--links" type="text"
@@ -190,14 +190,12 @@
                                                     placeholder="введите задачи (каждую с новой строчки)"></textarea>
                                             </div>
                                         </div>
-                                        <div class="tabs-block note">
+                                        <div class="tabs-block notes">
                                             <span class="note__span">
-                                                Добавить заметку
+                                                Заметка
                                             </span>
-                                            <div class="note__textarea-wrapper">
-                                                <textarea class="note__textarea"
-                                                    aria-label="ввеите задачи каждую с новой строчки"
-                                                    placeholder="Текст заметки"></textarea>
+                                            <div class="note__text">
+
                                                 <button class="note__textarea-button">
                                                     <span class="visually-hidden">
                                                         добавить заметку
@@ -255,7 +253,7 @@
                                         Заметки
                                     </button>
                                     <div class="main-tasks__sublist-wrapper">
-                                        <ul class="main-tasks__sublist">
+                                        <ul class="main-tasks__sublist main-tasks__sublist--notes">
                                             <!-- <li class="main-tasks__subitem">
                                                 <button class="main-tasks__task" type="button">
                                                     Добро пожаловать

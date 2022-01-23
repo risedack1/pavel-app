@@ -558,6 +558,7 @@
         color: $white;
         background-color: transparent;
         resize: none;
+        cursor: text;
 
         &::placeholder {
             color: rgba(255, 255, 255, 0.7);
@@ -583,7 +584,6 @@
 }
 
 .links {
-    position: relative;
     &__span {
         display: block;
         margin-bottom: 12px;
@@ -672,6 +672,24 @@
             height: 26px;
         }
     }
+}
+
+.tabs-block {
+    position: relative;
+}
+
+.tabs-block.active.required::before {
+    content: 'Заполните поле';
+    position: absolute;
+    right: -1%;
+    bottom: -70%;
+    width: 150px;
+    height: auto;
+    font-size: 16px;
+    color: red;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #fff;
 }
 
 .card-edit {
