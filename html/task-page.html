@@ -67,14 +67,17 @@
                             <div class="make-task__inner">
                                 <div class="make-task__tabs tabs">
                                     <div class="tabs__content tabs__content--input">
-                                        <div class="tabs-block tasks active">
+                                        <div class="tabs-block tabs-block--top tasks active">
+                                            <input class="make-task__nameinput make-task__nameinput--tasks" type="text"
+                                                name="task title" aria-label="введите название списка задач"
+                                                placeholder="Название списка задач" required>
                                         </div>
-                                        <div class="tabs-block notes">
+                                        <div class="tabs-block tabs-block--top notes">
                                             <input class="make-task__nameinput make-task__nameinput--notes" type="text"
                                                 name="task title" aria-label="введите название заметки"
                                                 placeholder="Название заметки" required>
                                         </div>
-                                        <div class="tabs-block links">
+                                        <div class="tabs-block tabs-block--top links">
                                             <input class="make-task__nameinput make-task__nameinput--links" type="text"
                                                 name="task title" aria-label="введите название заметки"
                                                 placeholder="Название списка" required>
@@ -91,7 +94,7 @@
                                     <div class="tabs__content">
                                         <div class="tabs-block active tasks">
                                             <span class="tasks__span">
-                                                Добавить задачу
+                                                Добавить задачи
                                             </span>
                                             <div class="tasks__textarea-wrapper">
                                                 <textarea class="tasks__textarea"
@@ -155,6 +158,9 @@
                                 <div class="card__tabs tabs">
                                     <div class="tabs__content tabs__content--input">
                                         <div class="tabs-block tasks">
+                                            <input class="card__nameinput card__nameinput--tasks" readonly type="text"
+                                                name="task title" aria-label="введите название списка задач"
+                                                placeholder="Название списка задач" required>
                                         </div>
                                         <div class="tabs-block notes">
                                             <input class="card__nameinput card__nameinput--notes" readonly type="text"
@@ -182,12 +188,10 @@
                                     <div class="tabs__content">
                                         <div class="tabs-block tasks">
                                             <span class="tasks__span">
-                                                Добавить задачу
+                                                Список задач
                                             </span>
-                                            <div class="tasks__textarea-wrapper">
-                                                <textarea class="tasks__textarea"
-                                                    aria-label="ввеите задачи каждую с новой строчки"
-                                                    placeholder="введите задачи (каждую с новой строчки)"></textarea>
+                                            <div class="tasks__list">
+
                                             </div>
                                         </div>
                                         <div class="tabs-block notes">
@@ -229,7 +233,7 @@
                                         Задачи
                                     </button>
                                     <div class="main-tasks__sublist-wrapper">
-                                        <ul class="main-tasks__sublist">
+                                        <ul class="main-tasks__sublist main-tasks__sublist--tasks">
                                             <!-- <li class="main-tasks__subitem">
                                                 <button class="main-tasks__task" type="button">
                                                     Welcome

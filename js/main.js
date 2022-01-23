@@ -298,6 +298,14 @@ taskButton.addEventListener('click', function () {
     const tasks = document.querySelector('.tabs-item--task');
     const notes = document.querySelector('.tabs-item--note');
     const links = document.querySelector('.tabs-item--link');
+    const tabsTitle = document.querySelectorAll('.tabs-block--top input');
+
+    tabsTitle.forEach(el => {
+        if (el.value !== '') {
+            newTask.classList.remove('active');
+            console.log(el.value);
+        }
+    });
 
     if (links.classList.contains('active')) {
         createCardButton();
@@ -309,6 +317,12 @@ taskButton.addEventListener('click', function () {
     if (notes.classList.contains('active')) {
         createNotesButton();
         createNotesCard();
+        setSublistHeight();
+    }
+
+    if (tasks.classList.contains('active')) {
+        createTasksButton();
+        createTasksCard();
         setSublistHeight();
     }
 });
@@ -536,6 +550,7 @@ removeLink();
 function removeLink() {
     removeButtons.forEach(el => {
         el.addEventListener('click', function (e) {
+            const card = document.querySelector('.card');
             target = e.target;
             targetParent = target.closest('.main-tasks__subitem');
             const targetParentText = targetParent.textContent;
@@ -760,6 +775,132 @@ function createNotesCard() {
         });
     });
 }
+
+// Tasks
+const mainTasksObj = {};
+
+function createTasksButton() {
+    let tasksNameInput = document.querySelector('.make-task__nameinput--tasks');
+    const textArea = document.querySelector('.tasks__textarea');
+    const inputTitle = document.querySelector('.make-task__nameinput--tasks');
+    const inputTitleWrapper = document.querySelector('.tasks.active');
+    const tasksSublist = document.querySelector('.main-tasks__sublist--tasks');
+    let savedTaskItem;
+    let savedTaskSpan;
+    let removeBtn;
+
+
+    if (tasksNameInput.value !== '' && textArea.value !== '') {
+        let tasksNameInputValue = tasksNameInput.value;
+        mainTasksObj[tasksNameInputValue] = {};
+        mainTasksObj[tasksNameInputValue]['nameList'] = tasksNameInputValue;
+        tasksNameInput.value = '';
+
+        savedTaskItem = document.createElement('li');
+        savedTaskItem.classList.add('main-tasks__subitem');
+        savedTaskItem.classList.add('main-tasks__subitem--tasks');
+        savedTaskSpan = document.createElement('span');
+        tasksSublist.prepend(savedTaskItem);
+        savedTaskItem.prepend(savedTaskSpan);
+        savedTaskItem.setAttribute('role', 'button');
+
+        savedTaskSpan.textContent = mainTasksObj[tasksNameInputValue]['nameList'];
+
+        // textarea
+        const tasksArr = textArea.value.split('\n');
+        mainTasksObj[tasksNameInputValue]['tasksList'] = [];
+
+        for (let i = 0; i < tasksArr.length; i++) {
+            const taskItem = document.createElement('button');
+            taskItem.classList.add('tasks__item');
+            taskItem.textContent = tasksArr[i];
+            mainTasksObj[tasksNameInputValue]['tasksList'].push(taskItem);
+        }
+        console.log(mainTasksObj);
+
+
+
+        removeBtn = document.createElement('button');
+        removeBtn.classList.add('main-tasks__remove');
+        savedTaskItem.append(removeBtn);
+
+        removeButtons = document.querySelectorAll('.main-tasks__remove');
+
+        textArea.value = '';
+
+        removeLink();
+    } else {
+        inputTitleWrapper.classList.add('required');
+
+        inputTitle.addEventListener('focus', function () {
+            inputTitleWrapper.classList.remove('required');
+        });
+    }
+}
+
+function createTasksCard() {
+    tasksItem = document.querySelectorAll('.main-tasks__subitem--tasks');
+
+    tasksItem.forEach(el => {
+        el.addEventListener('click', function (e) {
+            const cardInput = document.querySelector('.card__nameinput--tasks');
+            const tasksList = document.querySelector('.tasks__list');
+            const makeTask = document.querySelector('.make-task');
+            let target = e.target;
+            let targetValue = target.textContent;
+
+            // Change active tab
+            const tabsBlockTasks = document.querySelectorAll('.card .tasks');
+            const tabsTask = document.querySelector('.card .tabs-item--task');
+
+            changeActiveTabs(tabsTask, tabsBlockTasks);
+
+            cardInput.value = mainTasksObj[targetValue]['nameList'];
+
+            const tasks = document.querySelectorAll('.tasks__item');
+
+            tasks.forEach(el => {
+                if (el) el.remove();
+            });
+
+            const tasksArr = mainTasksObj[targetValue]['tasksList'];
+
+            tasksArr.forEach(el => {
+                tasksList.prepend(el);
+            });
+
+
+            if (makeTask.classList.contains('active')) {
+                makeTask.classList.remove('active');
+            }
+
+            // Set active button
+            const card = document.querySelector('.card');
+            const buttons = document.querySelectorAll('.main-tasks__subitem');
+
+            buttons.forEach(el => {
+                el.classList.remove('active');
+            });
+            target.classList.add('active');
+            card.classList.add('active');
+
+            closeEditorLinks();
+
+            const checkTask = function () {
+                // const tasks = document.querySelectorAll('.tasks__item');
+
+                tasksArr.forEach(el => {
+                    el.addEventListener('click', function () {
+                        el.classList.toggle('tasks__item--checked');
+                    });
+                });
+            }
+
+            checkTask();
+        });
+    });
+}
+
 
 function changeActiveTabs(activeTab, activeBlock) {
     const tabsItem = document.querySelectorAll('.card .tabs-item');
