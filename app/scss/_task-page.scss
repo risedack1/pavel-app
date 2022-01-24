@@ -30,6 +30,10 @@
     &__icon {
         cursor: pointer;
 
+        &--calculator {
+            position: relative;
+        }
+
         &:not(:last-child) {
             margin-right: 18px;
         }
@@ -42,6 +46,19 @@
         }
     }
 
+    &__calculator {
+        position: absolute;
+        top: 31px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+
+        @include w($sm) {
+            position: fixed;
+            top: 47px;
+        }
+    }
+
     &__log-out {
         margin-left: auto;
 
@@ -50,6 +67,16 @@
             width: 23px;
             height: 23px;
             fill: $white;
+        }
+    }
+
+    &__link {
+        display: block;
+        &--calculator {
+            margin: 0;
+            padding: 0;
+            border: none;
+            background-color: transparent;
         }
     }
 
