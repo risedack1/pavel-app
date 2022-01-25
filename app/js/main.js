@@ -886,17 +886,28 @@ function createTasksCard() {
 
             closeEditorLinks();
 
-            const checkTask = function () {
-                // const tasks = document.querySelectorAll('.tasks__item');
+            deleteTask();
+        });
+    });
+}
 
-                tasksArr.forEach(el => {
-                    el.addEventListener('click', function () {
-                        el.classList.toggle('tasks__item--checked');
-                    });
-                });
-            }
+const deleteTask = function () {
+    const tasks = document.querySelectorAll('.tasks__item');
 
-            checkTask();
+    tasks.forEach((el, index) => {
+        el.addEventListener('click', function () {
+            const taskListTitle = document.querySelector('.card__nameinput--tasks').value;
+            console.log(taskListTitle);
+            el.classList.add('tasks__item--checked');
+            el.classList.add('tasks__item--animate');
+            console.log(index);
+            setTimeout(function () {
+                el.remove();
+            }, 1000);
+            mainTasksObj[taskListTitle]['tasksList'].reverse();
+            delete mainTasksObj[taskListTitle]['tasksList'][index];
+            mainTasksObj[taskListTitle]['tasksList'].reverse();
+            console.log(mainTasksObj);
         });
     });
 }

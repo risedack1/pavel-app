@@ -159,8 +159,7 @@
 
     &__item-button {
         position: relative;
-        margin-bottom: 6px;
-        padding: 10px 24px;
+        padding: 9px 24px;
         padding-left: 44px;
         width: 100%;
         border: none;
@@ -397,7 +396,7 @@
     padding: 18px 34px 22px 27px;
     width: 463px;
     height: 100%;
-    min-height: 400px;
+    min-height: 150px;
     border: 1px solid #fff;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.4);
@@ -451,6 +450,10 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+
+        @include h(450px) {
+            height: auto;
+        }
     }
 
     &__nameinput {
@@ -495,8 +498,12 @@
         }
 
         .tasks__textarea {
-            min-height: 200px;
+            min-height: 150px;
             height: 100%;
+
+            @include w($xl) {
+                height: 95%;
+            }
         }
     }
 
@@ -564,6 +571,7 @@
 
     &__item {
         position: relative;
+        bottom: 0;
         margin-bottom: 10px;
         padding: 5px 10px;
         padding-left: 30px;
@@ -573,6 +581,8 @@
         text-align: left;
         color: $white;
         background-color: $white-bg;
+        opacity: 1;
+        transition: bottom 1.5s ease-in, opacity 1s ease-in-out;
 
         &--checked {
             text-decoration: line-through;
@@ -580,6 +590,11 @@
             &::before {
                 background-color: $white;
             }
+        }
+
+        &--animate {
+            bottom: -200px;
+            opacity: 0;
         }
 
         &::before {
