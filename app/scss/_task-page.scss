@@ -230,8 +230,8 @@
         }
 
         &.active {
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 3px;
+            // background-color: rgba(255, 255, 255, 0.3);
+            // border-radius: 3px;
         }
     }
 
@@ -370,6 +370,16 @@
         .tasks__textarea {
             min-height: 200px;
             height: 50%;
+        }
+
+        .tabs-item {
+            opacity: 0.3;
+            pointer-events: none;
+
+            &.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
         }
     }
 
@@ -540,7 +550,7 @@
         border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 3px;
         color: $white;
-        font-size: 12px;
+        font-size: 14px;
         background-color: transparent;
         resize: none;
         cursor: text;
@@ -635,19 +645,18 @@
         border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 3px;
         color: $white;
-        font-size: 12px;
+        font-size: 14px;
         background-color: transparent;
         resize: none;
         cursor: text;
 
         &::-webkit-scrollbar {
-            width: 3px; /* ширина для вертикального скролла */
-            height: 3px; /* высота для горизонтального скролла */
-            background-color: #1b3a5f;
+            width: 3px; 
+            background-color: rgba(255, 255, 255, 0.3);
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.7);
             width: 1px;
         }
 
