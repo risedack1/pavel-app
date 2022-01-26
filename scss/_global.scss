@@ -3,6 +3,10 @@ body {
     height: 100%;
 }
 
+input {
+    cursor: text;
+}
+
 body {
     display: flex;
     flex-direction: column;
