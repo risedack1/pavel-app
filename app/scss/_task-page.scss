@@ -92,7 +92,7 @@
 
     &__aside {
         position: relative;
-        padding: 20px 17px 20px 33px;
+        padding: 35px 17px 20px 33px;
         width: 100%;
         height: calc((var(--vh, 1vh) * 100) - 46px);
         max-width: 355px;
@@ -263,7 +263,7 @@
     visibility: hidden;
     opacity: 0;
     max-height: 713px;
-    padding: 18px 34px 22px 27px;
+    padding: 35px 34px 22px 27px;
     width: 463px;
     height: 100%;
     border: 1px solid #fff;
@@ -404,7 +404,7 @@
     visibility: hidden;
     opacity: 0;
     max-height: 713px;
-    padding: 18px 34px 22px 27px;
+    padding: 35px 34px 22px 27px;
     width: 463px;
     height: 100%;
     min-height: 150px;
@@ -416,7 +416,7 @@
 
     &__close {
         position: absolute;
-        top: 15px;
+        top: 26px;
         right: 10px;
         border: none;
         background-color: transparent;
