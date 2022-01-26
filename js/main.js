@@ -553,11 +553,23 @@ function removeLink() {
             const card = document.querySelector('.card');
             target = e.target;
             targetParent = target.closest('.main-tasks__subitem');
+            targetSubList = target.closest('.main-tasks__sublist');
             const targetParentText = targetParent.textContent;
-            delete mainLinksObj[targetParentText];
-            targetParentList = target.closest('.main-tasks__sublist').offsetHeight - 35;
+            if (targetSubList.classList.contains('main-tasks__sublist--tasks')) {
+                delete mainTasksObj[targetParentText];
+                console.log('tasks');
+            } else if (targetSubList.classList.contains('main-tasks__sublist--notes')) {
+                delete mainNotesObj[targetParentText];
+                console.log('notes');
+            } else if (targetSubList.classList.contains('main-tasks__sublist--links')) {
+                delete mainLinksObj[targetParentText];
+                console.log('links');
+            }
+            targetParentList = targetSubList.offsetHeight - 34;
             target.closest('.main-tasks__sublist-wrapper').style.height = `${targetParentList}px`;
             targetParent.remove();
+            card.classList.remove('active');
+            console.log(mainLinksObj);
         });
     });
 }
