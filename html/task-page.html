@@ -65,23 +65,23 @@
                                     <use xlink:href="images/sprite.svg#close"></use>
                                 </svg>
                             </button>
-                            <div class="make-task__inner">
+                            <form class="make-task__inner" action="#">
                                 <div class="make-task__tabs tabs">
                                     <div class="tabs__content tabs__content--input">
                                         <div class="tabs-block tabs-block--top tasks active">
                                             <input class="make-task__nameinput make-task__nameinput--tasks" type="text"
                                                 name="task title" aria-label="введите название списка задач"
-                                                placeholder="Название списка задач" required>
+                                                placeholder="Название списка задач">
                                         </div>
                                         <div class="tabs-block tabs-block--top notes">
                                             <input class="make-task__nameinput make-task__nameinput--notes" type="text"
                                                 name="task title" aria-label="введите название заметки"
-                                                placeholder="Название заметки" required>
+                                                placeholder="Название заметки">
                                         </div>
                                         <div class="tabs-block tabs-block--top links">
                                             <input class="make-task__nameinput make-task__nameinput--links" type="text"
                                                 name="task title" aria-label="введите название заметки"
-                                                placeholder="Название списка" required>
+                                                placeholder="Название списка ссылок">
                                         </div>
                                     </div>
                                     <span class="make-task__span">
@@ -127,12 +127,12 @@
                                             </span>
                                             <div class="links__wrapper">
                                                 <div class="links__inputs">
-                                                    <input class="links__input links__input--name" type="text" required
+                                                    <input class="links__input links__input--name" type="text"
                                                         placeholder="Название ссылки">
-                                                    <input class="links__input links__input--link" type="text" required
+                                                    <input class="links__input links__input--link" type="text"
                                                         placeholder="URL ссылки">
                                                 </div>
-                                                <button class="links__btn">
+                                                <button class="links__btn" type="button">
                                                     <svg>
                                                         <use xlink:href="images/sprite.svg#plus"></use>
                                                     </svg>
@@ -147,7 +147,7 @@
                                 <button class="make-task__button button">
                                     Сохранить
                                 </button>
-                            </div>
+                            </form>
                         </div>
                         <div class="main-tasks__link card" data-simplebar>
                             <button class="card__close">
@@ -162,11 +162,21 @@
                                             <input class="card__nameinput card__nameinput--tasks" readonly type="text"
                                                 name="task title" aria-label="введите название списка задач"
                                                 placeholder="Название списка задач" required>
+                                            <button class="card-edit card-edit--tasks">
+                                                <svg>
+                                                    <use xlink:href="images/sprite.svg#edit-btn"></use>
+                                                </svg>
+                                            </button>
                                         </div>
                                         <div class="tabs-block notes">
                                             <input class="card__nameinput card__nameinput--notes" readonly type="text"
                                                 name="task title" aria-label="введите название заметки"
                                                 placeholder="Название заметки" required>
+                                            <button class="card-edit card-edit--notes">
+                                                <svg>
+                                                    <use xlink:href="images/sprite.svg#edit-btn"></use>
+                                                </svg>
+                                            </button>
                                         </div>
                                         <div class="tabs-block links active">
                                             <input class="card__nameinput card__nameinput--links" type="text"
@@ -187,7 +197,7 @@
                                         <li class="tabs-item tabs-item--link active" role="button">Ссылки</li>
                                     </ul>
                                     <div class="tabs__content">
-                                        <div class="tabs-block tasks">
+                                        <div class="tabs-block tasks tasks--list">
                                             <span class="tasks__span">
                                                 Список задач
                                             </span>
