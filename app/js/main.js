@@ -1,28 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const accordions = document.querySelectorAll('.accordion');
-
-    accordions.forEach(el => {
-        el.addEventListener('click', (e) => {
-            const self = e.currentTarget;
-            const control = self.querySelector('.accordion__control');
-            const content = self.querySelector('.accordion__content');
-
-            self.classList.toggle('open');
-
-            // если открыт аккордеон
-            if (self.classList.contains('open')) {
-                control.setAttribute('aria-expanded', true);
-                content.setAttribute('aria-hidden', false);
-                content.style.maxHeight = content.scrollHeight + 'px';
-            } else {
-                control.setAttribute('aria-expanded', false);
-                content.setAttribute('aria-hidden', true);
-                content.style.maxHeight = null;
-            }
-        });
-    });
-});
-
 let tabs = document.querySelectorAll(".tabs");
 for (let index = 0; index < tabs.length; index++) {
     let tab = tabs[index];
@@ -44,148 +19,7 @@ for (let index = 0; index < tabs.length; index++) {
         });
     }
 }
-
-// popup-------------------------------------------------------------------------
-
-window.addEventListener("load", function () {
-    if (document.querySelector('main')) {
-        setTimeout(function () {
-            document.querySelector('main').classList.add('_loaded');
-        }, 0);
-    }
-});
-
-let unlock = true;
-
-// //BodyLock
-function body_lock(delay) {
-    let body = document.querySelector("body");
-    if (body.classList.contains('_lock')) {
-        body_lock_remove(delay);
-    } else {
-        body_lock_add(delay);
-    }
-}
-
-function body_lock_remove(delay) {
-    let body = document.querySelector("body");
-    if (unlock) {
-        let lock_padding = document.querySelectorAll("._lp");
-        setTimeout(() => {
-            for (let index = 0; index < lock_padding.length; index++) {
-                const el = lock_padding[index];
-                el.style.paddingRight = '0px';
-            }
-            body.style.paddingRight = '0px';
-            body.classList.remove("_lock");
-        }, delay);
-
-        unlock = false;
-        setTimeout(function () {
-            unlock = true;
-        }, delay);
-    }
-}
-
-function body_lock_add(delay) {
-    let body = document.querySelector("body");
-    if (unlock) {
-        let lock_padding = document.querySelectorAll("._lp");
-        for (let index = 0; index < lock_padding.length; index++) {
-            const el = lock_padding[index];
-            el.style.paddingRight = window.innerWidth - document.querySelector('main').offsetWidth + 'px';
-        }
-        body.style.paddingRight = window.innerWidth - document.querySelector('main').offsetWidth + 'px';
-        body.classList.add("_lock");
-
-        unlock = false;
-        setTimeout(function () {
-            unlock = true;
-        }, delay);
-    }
-}
-
-let popup_link = document.querySelectorAll('.popup-link');
-let popups = document.querySelectorAll('.popup');
-for (let index = 0; index < popup_link.length; index++) {
-    const el = popup_link[index];
-    el.addEventListener('click', function (e) {
-        if (unlock) {
-            let item = el.getAttribute('href').replace('#', '');
-            let video = el.getAttribute('data-video');
-            popup_open(item, video);
-        }
-        e.preventDefault();
-    })
-}
-for (let index = 0; index < popups.length; index++) {
-    const popup = popups[index];
-    popup.addEventListener("click", function (e) {
-        if (!e.target.closest('.popup__body')) {
-            popup_close(e.target.closest('.popup'));
-        }
-    });
-}
-
-function popup_open(item, video = '') {
-    let activePopup = document.querySelectorAll('.popup._active');
-    if (activePopup.length > 0) {
-        popup_close('', false);
-    }
-    let curent_popup = document.querySelector('.popup--' + item);
-    if (curent_popup && unlock) {
-        if (video != '' && video != null) {
-            let popup_video = document.querySelector('.popup--video');
-            popup_video.querySelector('.popup__video').innerHTML = '<iframe src="https://www.youtube.com/embed/' + video + '?autoplay=1"  allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-        }
-        if (!document.querySelector('.menu__body._active')) {
-            body_lock_add(500);
-        }
-        curent_popup.classList.add('_active');
-        history.pushState('', '', '#' + item);
-    }
-}
-
-function popup_close(item, bodyUnlock = true) {
-    if (unlock) {
-        if (!item) {
-            for (let index = 0; index < popups.length; index++) {
-                const popup = popups[index];
-                let video = popup.querySelector('.popup__video');
-                if (video) {
-                    video.innerHTML = '';
-                }
-                popup.classList.remove('_active');
-            }
-        } else {
-            let video = item.querySelector('.popup__video');
-            if (video) {
-                video.innerHTML = '';
-            }
-            item.classList.remove('_active');
-        }
-        if (!document.querySelector('.menu__body._active') && bodyUnlock) {
-            body_lock_remove(500);
-        }
-        history.pushState('', '', window.location.href.split('#')[0]);
-    }
-}
-let popup_close_icon = document.querySelectorAll('.popup__close,._popup-close');
-if (popup_close_icon) {
-    for (let index = 0; index < popup_close_icon.length; index++) {
-        const el = popup_close_icon[index];
-        el.addEventListener('click', function () {
-            popup_close(el.closest('.popup'));
-        })
-    }
-}
-document.addEventListener('keydown', function (e) {
-    if (e.code === 'Escape') {
-        popup_close();
-    }
-});
 //-------------------------------------------------------------------------------------------------------
-
 const tasks = document.querySelector('.main-tasks__list');
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -232,6 +66,7 @@ const newTask = document.querySelector('.make-task');
 const closeTask = document.querySelector('.make-task__close');
 
 taskBtn.addEventListener('click', function () {
+
     const card = document.querySelector('.card');
     if (card.classList.contains('active')) {
         card.classList.remove('active');
@@ -277,24 +112,17 @@ calendarBtn.addEventListener('click', function () {
     }
 });
 
-// document.addEventListener('click', function (e) {
-//     if (e.target.className != 'header__icon' && calendarBtn.classList.contains('close')) {
-//         console.log('test');
-//         calendarBtn.classList.remove('close');
-//     }
-// });
-
-// add link and create the card
-
 const linksBtn = document.querySelector('.links__btn');
 const taskButton = document.querySelector('.make-task__button');
+const makeTaskCard = document.querySelector('.make-task__inner');
 const closeCardButton = document.querySelector('.card__close');
 let linksItem;
 let notesItem;
 let removeButtons = document.querySelectorAll('.main-tasks__remove');
 let mainLinksObj = {};
 
-taskButton.addEventListener('click', function () {
+makeTaskCard.addEventListener('submit', function (e) {
+    e.preventDefault();
     const tasks = document.querySelector('.tabs-item--task');
     const notes = document.querySelector('.tabs-item--note');
     const links = document.querySelector('.tabs-item--link');
@@ -303,7 +131,6 @@ taskButton.addEventListener('click', function () {
     tabsTitle.forEach(el => {
         if (el.value !== '') {
             newTask.classList.remove('active');
-            console.log(el.value);
         }
     });
 
@@ -368,7 +195,7 @@ function setSublistHeight() {
         const subListWrapper = el.closest('.main-tasks__sublist-wrapper');
         const subListHeight = el.clientHeight;
 
-        subListWrapper.style.height = `${subListHeight}px`;
+        subListWrapper.style.cssText = `height: ${subListHeight}px; opacity: 1; visibility: visible;`;
     });
 
 }
@@ -411,7 +238,6 @@ function createCard() {
             // Set active button
             const card = document.querySelector('.card');
             const buttons = document.querySelectorAll('.main-tasks__subitem');
-            console.log(buttons);
 
             buttons.forEach(el => {
                 el.classList.remove('active');
@@ -478,7 +304,9 @@ function addNewLink() {
     const linksList = document.querySelector('.links__list');
     let link;
 
+
     if (linksInput.value != '' && linksInputName.value != '') {
+        // linksList.innerHTML += `<a class="links__item" href="${linksInput.value}" target="_blank">${linksInputName.value}</a>`;
         link = document.createElement('a');
         link.classList.add('links__item');
         linksList.prepend(link);
@@ -517,10 +345,6 @@ function createCardButton() {
             removeBtn = document.createElement('button');
             removeBtn.classList.add('main-tasks__remove');
             savedLinkItem.append(removeBtn);
-
-            removeButtons = document.querySelectorAll('.main-tasks__remove');
-
-            removeLink();
         }
     } else {
         inputTitleWrapper.classList.add('required');
@@ -531,162 +355,49 @@ function createCardButton() {
     }
 }
 
-//????????????????????????????
-function addLinksToCard() {
-    let cardLinksList = document.querySelector('.link-card .links__list');
-    let mainLinksList = document.querySelector('.main-tasks__sublist--links');
-    let cardLinksListCh = document.querySelectorAll('.link-card .links__list *');
-    cardLinksListCh.forEach(el => {
-        el.remove();
-    });
-    cardLinksList.appendChild(mainLinksList.cloneNode(true));
-}
 
-
-let targetParentList;
 
 removeLink();
 
 function removeLink() {
-    removeButtons.forEach(el => {
-        el.addEventListener('click', function (e) {
-            const card = document.querySelector('.card');
-            target = e.target;
-            targetParent = target.closest('.main-tasks__subitem');
-            targetSubList = target.closest('.main-tasks__sublist');
-            const targetParentText = targetParent.textContent;
-            if (targetSubList.classList.contains('main-tasks__sublist--tasks')) {
-                delete mainTasksObj[targetParentText];
-                console.log('tasks');
-            } else if (targetSubList.classList.contains('main-tasks__sublist--notes')) {
-                delete mainNotesObj[targetParentText];
-                console.log('notes');
-            } else if (targetSubList.classList.contains('main-tasks__sublist--links')) {
-                delete mainLinksObj[targetParentText];
-                console.log('links');
+    const sublists = document.querySelectorAll('.main-tasks__sublist');
+    let targetParentList;
+
+    sublists.forEach(el => {
+        el.addEventListener('click', (e) => {
+            const target = e.target;
+
+            if (target && target.matches('button.main-tasks__remove')) {
+                const card = document.querySelector('.card');
+                const targetParent = target.closest('.main-tasks__subitem');
+                const targetSubList = target.closest('.main-tasks__sublist');
+                const targetParentText = targetParent.textContent;
+                if (targetSubList.classList.contains('main-tasks__sublist--tasks')) {
+                    delete mainTasksObj[targetParentText];
+                } else if (targetSubList.classList.contains('main-tasks__sublist--notes')) {
+                    delete mainNotesObj[targetParentText];
+                } else if (targetSubList.classList.contains('main-tasks__sublist--links')) {
+                    delete mainLinksObj[targetParentText];
+                }
+                targetParentList = targetSubList.offsetHeight - 34;
+                target.closest('.main-tasks__sublist-wrapper').style.height = `${targetParentList}px`;
+                targetParent.remove();
+                card.classList.remove('active');
             }
-            targetParentList = targetSubList.offsetHeight - 34;
-            target.closest('.main-tasks__sublist-wrapper').style.height = `${targetParentList}px`;
-            targetParent.remove();
-            card.classList.remove('active');
-            console.log(mainLinksObj);
         });
     });
 }
 
-//edit links
+function changeActiveCard(card) {
+    const cards = document.querySelectorAll('.tabs-block--top');
 
-const editLinkButton = document.querySelector('.card-edit--links');
-const cardButton = document.querySelector('.card__button');
-
-editLinkButton.addEventListener('click', function () {
-    editLinksCard(changeLinksListData);
-});
-
-function changeLinksListData() {
-    const title = document.querySelector('.card__nameinput--links');
-    const linksNameValue = document.querySelectorAll('.links__input--name-change');
-    const linksHrefValue = document.querySelectorAll('.links__input--href-change');
-    let titleValue = title.value;
-
-    cardButton.addEventListener('click', function () {
-        const linkButton = document.querySelector('.main-tasks__subitem--link.active > span');
-        let changedTitleValue = title.value;
-        titleValue = titleValue;
-
-        //change nameList
-        // mainLinksObj[changedTitleValue] = mainLinksObj[titleValue];
-        // delete mainLinksObj[titleValue];
-
-        console.log(changedTitleValue);
-
-        if (mainLinksObj[titleValue] !== mainLinksObj[changedTitleValue]) {
-            Object.defineProperty(mainLinksObj, changedTitleValue,
-                Object.getOwnPropertyDescriptor(mainLinksObj, titleValue));
-            delete mainLinksObj[titleValue];
+    cards.forEach(el => {
+        if (el.classList.contains(card)) {
+            if (!el.classList.contains('active')) el.classList.add('active');
+        } else {
+            el.classList.remove('active');
         }
-
-        mainLinksObj[changedTitleValue]['nameList'] = changedTitleValue;
-        let nameList = mainLinksObj[changedTitleValue]['nameList'];
-        linkButton.innerHTML = nameList;
-
-        // change links
-        linksNameValue.forEach(el => {
-            if (el.value !== '') {
-                let link = el.nextSibling.nextSibling;
-                let changedLinksNameValue = el.value;
-                link.textContent = changedLinksNameValue;
-            }
-            el.remove();
-        });
-
-        linksHrefValue.forEach(el => {
-            if (el.value !== '') {
-                let link = el.nextSibling;
-                let changedLinksHrefValue = el.value;
-                link.setAttribute('href', changedLinksHrefValue);
-            }
-            el.remove();
-        });
-
-        // add new link array to main array
-        const newLinksArr = document.querySelectorAll('.links__item');
-        console.log(newLinksArr);
-
-        mainLinksObj[changedTitleValue]['linksItem'] = newLinksArr;
-        title.setAttribute('readonly', 'true');
-        cardButton.classList.remove('active');
-        editLinkButton.classList.remove('hidden');
     });
-}
-
-
-function editLinksCard(callback) {
-    const card = document.querySelector('.card');
-    const title = document.querySelector('.card__nameinput--links');
-    const links = document.querySelectorAll('.links__item');
-
-    card.classList.add('card--edit');
-
-    title.removeAttribute('readonly');
-    editLinkButton.classList.add('hidden');
-
-    let createInputName = function (linkName) {
-        const inputName = document.createElement('input');
-
-        inputName.classList.add('links__input');
-        inputName.classList.add('links__input--name-change');
-        inputName.setAttribute('placeholder', 'Введите имя ссылки');
-        inputName.value = linkName;
-
-        return inputName;
-    }
-
-    let createInputHref = function (linkHref) {
-        const inputHref = document.createElement('input');
-
-        inputHref.classList.add('links__input');
-        inputHref.classList.add('links__input--href-change');
-        inputHref.setAttribute('placeholder', 'Введите ссылку');
-        inputHref.value = linkHref;
-
-        return inputHref;
-    }
-
-
-
-    links.forEach(el => {
-        elText = el.textContent;
-        elHref = el.getAttribute('href');
-        el.before(createInputName(elText));
-        el.before(createInputHref(elHref));
-    });
-
-    title.focus();
-
-    cardButton.classList.add('active');
-
-    callback();
 }
 
 // notes
@@ -726,13 +437,8 @@ function createNotesButton() {
         const noteTextareaValue = noteTextarea.value;
         mainNotesObj[notesListTitleValue]['value'] = noteTextareaValue;
         noteTextarea.value = '';
-
-        removeButtons = document.querySelectorAll('.main-tasks__remove');
-
-        removeLink();
     } else {
         inputTitleWrapper.classList.add('required');
-        console.log(inputTitleWrapper);
 
         inputTitle.addEventListener('focus', function () {
             inputTitleWrapper.classList.remove('required');
@@ -828,7 +534,6 @@ function createTasksButton() {
             taskItem.textContent = tasksArr[i];
             mainTasksObj[tasksNameInputValue]['tasksList'].push(taskItem);
         }
-        console.log(mainTasksObj);
 
 
 
@@ -836,11 +541,7 @@ function createTasksButton() {
         removeBtn.classList.add('main-tasks__remove');
         savedTaskItem.append(removeBtn);
 
-        removeButtons = document.querySelectorAll('.main-tasks__remove');
-
         textArea.value = '';
-
-        removeLink();
     } else {
         inputTitleWrapper.classList.add('required');
 
@@ -858,7 +559,7 @@ function createTasksCard() {
             const cardInput = document.querySelector('.card__nameinput--tasks');
             const tasksList = document.querySelector('.tasks__list');
             const makeTask = document.querySelector('.make-task');
-            let target = e.target;
+            let target = e.currentTarget;
             let targetValue = target.textContent;
 
             // Change active tab
@@ -909,17 +610,14 @@ const deleteTask = function () {
     tasks.forEach((el, index) => {
         el.addEventListener('click', function () {
             const taskListTitle = document.querySelector('.card__nameinput--tasks').value;
-            console.log(taskListTitle);
             el.classList.add('tasks__item--checked');
             el.classList.add('tasks__item--animate');
-            console.log(index);
             setTimeout(function () {
                 el.remove();
             }, 1000);
             mainTasksObj[taskListTitle]['tasksList'].reverse();
             delete mainTasksObj[taskListTitle]['tasksList'][index];
             mainTasksObj[taskListTitle]['tasksList'].reverse();
-            console.log(mainTasksObj);
         });
     });
 }
@@ -944,6 +642,244 @@ function changeActiveTabs(activeTab, activeBlock) {
     });
 }
 
+//edit cards
+const cardButton = document.querySelector('.card__button');
+
+//edit links
+const editLinkButton = document.querySelector('.card-edit--links');
+
+editLinkButton.addEventListener('click', function () {
+    editLinksCard(changeLinksListData);
+});
+
+function changeLinksListData() {
+    const linksCard = document.querySelector('.links');
+    const title = document.querySelector('.card__nameinput--links');
+    const linksNameValue = document.querySelectorAll('.links__input--name-change');
+    const linksHrefValue = document.querySelectorAll('.links__input--href-change');
+    let titleValue = title.value;
+
+    // if (!linksCard.classList.contains('active')) linksCard.classList.add('active');
+    changeActiveCard('links');
+
+    if (linksCard.classList.contains('active')) {
+        cardButton.addEventListener('click', function () {
+            const linkButton = document.querySelector('.main-tasks__subitem--link.active > span');
+            let changedTitleValue = title.value;
+            titleValue = titleValue;
+
+            //change nameList
+            // mainLinksObj[changedTitleValue] = mainLinksObj[titleValue];
+            // delete mainLinksObj[titleValue];
+
+            if (mainLinksObj[titleValue] !== mainLinksObj[changedTitleValue]) {
+                Object.defineProperty(mainLinksObj, changedTitleValue,
+                    Object.getOwnPropertyDescriptor(mainLinksObj, titleValue));
+                delete mainLinksObj[titleValue];
+            }
+
+            mainLinksObj[changedTitleValue]['nameList'] = changedTitleValue;
+            let nameList = mainLinksObj[changedTitleValue]['nameList'];
+            linkButton.innerHTML = nameList;
+
+            // change links
+            linksNameValue.forEach(el => {
+                if (el.value !== '') {
+                    let link = el.nextSibling.nextSibling;
+                    let changedLinksNameValue = el.value;
+                    link.textContent = changedLinksNameValue;
+                }
+                el.remove();
+            });
+
+            linksHrefValue.forEach(el => {
+                if (el.value !== '') {
+                    let link = el.nextSibling;
+                    let changedLinksHrefValue = el.value;
+                    link.setAttribute('href', changedLinksHrefValue);
+                }
+                el.remove();
+            });
+
+            // add new link array to main array
+            const newLinksArr = document.querySelectorAll('.links__item');
+
+            title.setAttribute('readonly', 'true');
+            cardButton.classList.remove('active');
+            editLinkButton.classList.remove('hidden');
+
+            mainLinksObj[changedTitleValue]['linksItem'] = newLinksArr;
+        }, {
+            once: true
+        });
+    }
+}
+
+
+function editLinksCard(callback) {
+    const card = document.querySelector('.card');
+    const title = document.querySelector('.card__nameinput--links');
+    const links = document.querySelectorAll('.links__item');
+
+    card.classList.add('card--edit');
+
+    title.removeAttribute('readonly');
+    editLinkButton.classList.add('hidden');
+
+    let createInputName = function (linkName) {
+        const inputName = document.createElement('input');
+
+        inputName.classList.add('links__input');
+        inputName.classList.add('links__input--name-change');
+        inputName.setAttribute('placeholder', 'Введите имя ссылки');
+        inputName.value = linkName;
+
+        return inputName;
+    }
+
+    let createInputHref = function (linkHref) {
+        const inputHref = document.createElement('input');
+
+        inputHref.classList.add('links__input');
+        inputHref.classList.add('links__input--href-change');
+        inputHref.setAttribute('placeholder', 'Введите ссылку');
+        inputHref.value = linkHref;
+
+        return inputHref;
+    }
+
+
+
+    links.forEach(el => {
+        elText = el.textContent;
+        elHref = el.getAttribute('href');
+        el.before(createInputName(elText));
+        el.before(createInputHref(elHref));
+    });
+
+    title.focus();
+
+    cardButton.classList.add('active');
+
+    callback();
+}
+
+//edit notes
+const editNotesButton = document.querySelector('.card-edit--notes');
+
+editNotesButton.addEventListener('click', function () {
+    editNotesCard(changeNotesListData);
+});
+
+function changeNotesListData() {
+    const notesCard = document.querySelector('.notes');
+    const title = document.querySelector('.card__nameinput--notes');
+    const titleOldValue = title.value;
+
+    // if (!notesCard.classList.contains('active')) notesCard.classList.add('active');
+    changeActiveCard('notes');
+
+    if (notesCard.classList.contains('active')) {
+        cardButton.addEventListener('click', function () {
+            const noteTextarea = document.querySelector('.note__textarea--edit');
+            const noteButton = document.querySelector('.main-tasks__subitem--note.active > span');
+            const note = document.querySelector('.note__text');
+            const titleNewValue = title.value;
+
+            if (mainNotesObj[titleOldValue] !== mainNotesObj[titleNewValue]) {
+                Object.defineProperty(mainNotesObj, titleNewValue,
+                    Object.getOwnPropertyDescriptor(mainNotesObj, titleOldValue));
+                delete mainNotesObj[titleOldValue];
+            }
+
+            mainNotesObj[titleNewValue]['nameList'] = titleNewValue;
+            mainNotesObj[titleNewValue]['value'] = noteTextarea.value;
+
+            noteButton.textContent = mainNotesObj[titleNewValue]['nameList'];
+
+            note.innerHTML = `<p>${noteTextarea.value}</p>`;
+
+            title.setAttribute('readonly', 'true');
+            cardButton.classList.remove('active');
+            editNotesButton.classList.remove('hidden');
+        }, {
+            once: true
+        });
+    }
+}
+
+function editNotesCard(callback) {
+    const card = document.querySelector('.card');
+    const title = document.querySelector('.card__nameinput--notes');
+    const note = document.querySelector('.note__text');
+    const noteParagraph = document.querySelector('.note__text p');
+
+    card.classList.add('card--edit');
+
+    title.removeAttribute('readonly');
+    title.focus();
+    editNotesButton.classList.add('hidden');
+
+    const noteText = noteParagraph.textContent;
+
+    note.innerHTML = `<textarea class="note__textarea note__textarea--edit">${noteText}</textarea>`;
+
+    cardButton.classList.add('active');
+
+    callback();
+}
+
+//edit tasks
+const editTasksButton = document.querySelector('.card-edit--tasks');
+
+editTasksButton.addEventListener('click', function () {
+    editTasksCard(changeTasksListData);
+});
+
+function changeTasksListData() {
+    const tasksCard = document.querySelector('.tasks');
+    const title = document.querySelector('.card__nameinput--tasks');
+    const titleOldValue = title.value;
+
+    // if (!tasksCard.classList.contains('active')) tasksCard.classList.add('active');
+    changeActiveCard('tasks');
+
+    if (tasksCard.classList.contains('active')) {
+        cardButton.addEventListener('click', function () {
+            const titleNewValue = title.value;
+            const taskButton = document.querySelector('.main-tasks__subitem--tasks.active > span');
+
+
+            if (mainTasksObj[titleOldValue] !== mainTasksObj[titleNewValue]) {
+                Object.defineProperty(mainTasksObj, titleNewValue,
+                    Object.getOwnPropertyDescriptor(mainTasksObj, titleOldValue));
+                delete mainTasksObj[titleOldValue];
+            }
+
+            mainTasksObj[titleNewValue]['nameList'] = titleNewValue;
+            taskButton.textContent = mainTasksObj[titleNewValue]['nameList'];
+
+            title.setAttribute('readonly', 'true');
+            cardButton.classList.remove('active');
+            editTasksButton.classList.remove('hidden');
+        }, {
+            once: true
+        });
+    }
+
+}
+
+function editTasksCard(callback) {
+    const title = document.querySelector('.card__nameinput--tasks');
+
+    title.removeAttribute('readonly');
+    editTasksButton.classList.add('hidden');
+    title.focus();
+
+    cardButton.classList.add('active');
+
+    callback();
+}
 
 // resize window
 
@@ -997,7 +933,6 @@ function eventHandler() {
 }
 
 function keyDisplay() {
-    //console.log(String.fromCharCode(event.keyCode));
     if ((event.keyCode >= 48 && event.keyCode <= 57)) {
         printOnTheScrean(String.fromCharCode(event.keyCode), dis);
     }
@@ -1221,8 +1156,3 @@ function factorial(num) {
     else if (num > 0)
         return num * factorial(num - 1);
 }
-
-
-$(function () {
-
-});

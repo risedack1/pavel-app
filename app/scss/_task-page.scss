@@ -92,7 +92,7 @@
 
     &__aside {
         position: relative;
-        padding: 35px 17px 20px 33px;
+        padding: 22px 17px 20px 33px;
         width: 100%;
         height: calc((var(--vh, 1vh) * 100) - 46px);
         max-width: 355px;
@@ -183,7 +183,12 @@
             background-position: center;
             background-size: contain;
             background-repeat: no-repeat;
-            transform: translateY(-50%);
+            transform: translateY(-50%) rotate(180deg);
+            transition: transform 0.3s;
+        }
+        
+        &.hidden::after {
+            transform: translateY(-50%) rotate(0);
         }
 
         &:hover {
@@ -230,8 +235,8 @@
         }
 
         &.active {
-            // background-color: rgba(255, 255, 255, 0.3);
-            // border-radius: 3px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
         }
     }
 
@@ -247,8 +252,8 @@
 
     &__remove {
         padding: 0;
-        width: 17px;
-        height: 17px;
+        width: 20px;
+        height: 20px;
         background-image: url('../images/remove-icon.png');
         border: none;
         background-position: center;
@@ -404,7 +409,7 @@
     visibility: hidden;
     opacity: 0;
     max-height: 713px;
-    padding: 35px 34px 22px 27px;
+    padding: 22px 34px 22px 27px;
     width: 463px;
     height: 100%;
     min-height: 150px;
@@ -416,7 +421,7 @@
 
     &__close {
         position: absolute;
-        top: 26px;
+        top: 16px;
         right: 10px;
         border: none;
         background-color: transparent;
@@ -530,6 +535,7 @@
 }
 
 .tasks {
+    position: relative;
     height: 90%;
     &__span {
         display: block;
@@ -622,9 +628,35 @@
             border: 1px solid $white;
         }
     }
+
+    &--list {
+        &::after {
+            content: 'Нажми, что бы удалить задачу';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 59%;
+            height: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: #fefefe;
+            transition: opacity 0.3s;
+        }
+
+        @media (any-hover) {
+            &::after {
+                opacity: 0;
+            }
+
+            &:hover::after {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 .note {
+    position: relative;
     &__span {
         margin-bottom: 12px;
         font-size: 12px;
@@ -701,9 +733,15 @@
             width: 1px;
         }
     }
+
+    &__textarea--edit {
+        padding: 5px;
+        border: none;
+    }
 }
 
 .links {
+    position: relative;
     &__span {
         display: block;
         margin-bottom: 12px;
