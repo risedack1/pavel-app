@@ -17,19 +17,11 @@
                     <img src="images/logo.png" alt="логотип task list">
                 </a>
                 <ul class="header__icons">
-                    <li class="header__icon header__icon--calendar" role="button">
+                    <li class="header__icon header__icon--calendar" role="button" tabindex="0">
                         <span class="visually-hidden">Открыть календарь</span>
                         <svg>
                             <use xlink:href="images/sprite.svg#calendar"></use>
                         </svg>
-                    </li>
-                    <li class="header__icon">
-                        <span class="visually-hidden">перейти на сайт ex</span>
-                        <a class="header__link" href="https://www.xe.com" target="_blank">
-                            <svg>
-                                <use xlink:href="images/sprite.svg#ex"></use>
-                            </svg>
-                        </a>
                     </li>
                     <li class="header__icon header__icon--calculator">
                         <span class="visually-hidden">перейти к калькулятору</span>
@@ -127,9 +119,10 @@
                                         Выберите список:
                                     </span>
                                     <ul class="tabs__nav">
-                                        <li class="tabs-item tabs-item--task active" role="button">Задачи</li>
-                                        <li class="tabs-item tabs-item--note" role="button">Заметки</li>
-                                        <li class="tabs-item tabs-item--link" role="button">Ссылки</li>
+                                        <li class="tabs-item tabs-item--task active" role="button" tabindex="0">Задачи
+                                        </li>
+                                        <li class="tabs-item tabs-item--note" role="button" tabindex="0">Заметки</li>
+                                        <li class="tabs-item tabs-item--link" role="button" tabindex="0">Ссылки</li>
                                     </ul>
                                     <div class="tabs__content">
                                         <div class="tabs-block active tasks">
@@ -364,6 +357,7 @@
     </main>
     <script src="js/main.min.js"></script>
     <!-- <script src="js/main.js"></script> -->
+    <!-- <script src="js/main-01.js"></script> -->
 </body>
 
 </html>

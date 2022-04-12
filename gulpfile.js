@@ -76,11 +76,11 @@ function styles() {
 
 function scripts() {
     return src([
-            'node_modules/jquery/dist/jquery.js',
-            'node_modules/flatpickr/dist/flatpickr.min.js',
-            'node_modules/simplebar/dist/simplebar.js',
-            'app/js/main.js'
-        ])
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/flatpickr/dist/flatpickr.min.js',
+        'node_modules/simplebar/dist/simplebar.js',
+        'app/js/main-01.js'
+    ])
         .pipe(sourcemap.init())
         .pipe(fileInclude({
             prefix: '@'
@@ -112,11 +112,11 @@ function images() {
             }),
             imagemin.svgo({
                 plugins: [{
-                        removeViewBox: true
-                    },
-                    {
-                        cleanupIDs: false
-                    }
+                    removeViewBox: true
+                },
+                {
+                    cleanupIDs: false
+                }
                 ]
             })
         ]))
@@ -138,13 +138,13 @@ function fonts() {
 
 function build() {
     return src([
-            'app/*.html',
-            'app/css/style.min.css',
-            'app/js/main.min.js',
-            'app/fonts/*.*'
-        ], {
-            base: 'app'
-        })
+        'app/*.html',
+        'app/css/style.min.css',
+        'app/js/main.min.js',
+        'app/fonts/*.*'
+    ], {
+        base: 'app'
+    })
         .pipe(dest('dist'));
 }
 
