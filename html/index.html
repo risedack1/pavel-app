@@ -1,40 +1,1 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="css/style.min.css" />
-</head>
-
-<body class="body--sign-up">
-    <main class="main">
-        <h1 class="visually-hidden">
-            Войти в Task list
-        </h1>
-        <div class="container">
-            <div class="login">
-                <form class="login__form login-form" action="#" method="post">
-                    <img class="login-form__logo" src="images/logo.png" alt="логотип Task list">
-                    <label class="login-form__label">
-                        <span class="login-form__span">Email</span>
-                        <input class="login-form__input" type="email" name="Email" placeholder="example@gmail.com"
-                            aria-label="Введите Email" required>
-                    </label>
-                    <label class="login-form__label">
-                        <span class="login-form__span">Password</span>
-                        <input class="login-form__input" type="password" name="password" aria-label="Введите пароль"
-                            required>
-                    </label>
-                    <button class="login-form__button button" type="submit">Войти</button>
-                </form>
-            </div>
-        </div>
-        @@include('./components/_popup.html')
-    </main>
-    <script src="js/main.min.js"></script>
-</body>
-
-</html>
+<!DOCTYPE html><html lang="ru"><head>    <meta charset="UTF-8" />    <meta http-equiv="X-UA-Compatible" content="IE=edge" />    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <title>Sign Up</title>    <link rel="stylesheet" href="css/style.min.css" /></head><body class="body--sign-up">    <main class="main">        <h1 class="visually-hidden">            Войти в Task list        </h1>        <div class="container">            <div class="login">                <form class="login__form login-form" action="#" method="post">                    <picture><source srcset="images/logo.webp" type="image/webp"><img class="login-form__logo" src="images/logo.png" alt="логотип Task list"></picture>                    <label class="login-form__label">                        <span class="login-form__span">Email</span>                        <input class="login-form__input" type="email" name="Email" placeholder="example@gmail.com"                            aria-label="Введите Email" required>                    </label>                    <label class="login-form__label">                        <span class="login-form__span">Password</span>                        <input class="login-form__input" type="password" name="password" aria-label="Введите пароль"                            required>                    </label>                    <button class="login-form__button button" type="submit">Войти</button>                </form>            </div>        </div>        @@include('./components/_popup.html')    </main>    <script src="js/main.min.js"></script></body></html>
