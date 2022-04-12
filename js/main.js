@@ -112,6 +112,9 @@ calendarBtn.addEventListener('click', function () {
     }
 });
 
+//----------------------------------------------------------------------------
+
+
 const linksBtn = document.querySelector('.links__btn');
 const taskButton = document.querySelector('.make-task__button');
 const makeTaskCard = document.querySelector('.make-task__inner');
@@ -188,17 +191,6 @@ function closeEditorLinks() {
     }
 }
 
-function setSublistHeight() {
-    const sublist = document.querySelectorAll('.main-tasks__sublist');
-
-    sublist.forEach(el => {
-        const subListWrapper = el.closest('.main-tasks__sublist-wrapper');
-        const subListHeight = el.clientHeight;
-
-        subListWrapper.style.cssText = `height: ${subListHeight}px; opacity: 1; visibility: visible;`;
-    });
-
-}
 
 function createCard() {
     linksItem = document.querySelectorAll('.main-tasks__subitem--link');
@@ -306,13 +298,7 @@ function addNewLink() {
 
 
     if (linksInput.value != '' && linksInputName.value != '') {
-        // linksList.innerHTML += `<a class="links__item" href="${linksInput.value}" target="_blank">${linksInputName.value}</a>`;
-        link = document.createElement('a');
-        link.classList.add('links__item');
-        linksList.prepend(link);
-        link.setAttribute('href', linksInput.value);
-        link.setAttribute('target', '_blank');
-        link.innerHTML = linksInputName.value;
+        linksList.innerHTML += `<a class="links__item" href="${linksInput.value}" target="_blank">${linksInputName.value}</a>`;
         linksInput.value = '';
         linksInputName.value = '';
     }
@@ -620,7 +606,7 @@ const deleteTask = function () {
             mainTasksObj[taskListTitle]['tasksList'].reverse();
         });
     });
-}
+};
 
 
 function changeActiveTabs(activeTab, activeBlock) {
@@ -837,19 +823,47 @@ editTasksButton.addEventListener('click', function () {
 });
 
 function changeTasksListData() {
-    const tasksCard = document.querySelector('.tasks');
+    const tasksCard = document.querySelector('.tasks--list');
     const title = document.querySelector('.card__nameinput--tasks');
     const titleOldValue = title.value;
+    const tasksItem = document.querySelectorAll('.tasks__item');
 
-    // if (!tasksCard.classList.contains('active')) tasksCard.classList.add('active');
+    tasksItem.forEach(task => {
+        const inputEditTask = document.createElement('input');
+        inputEditTask.classList.add('tasks__change-item');
+        inputEditTask.setAttribute('placeholder', 'Измените задачу');
+        inputEditTask.setAttribute('aria-label', 'Измените задачу');
+        task.before(inputEditTask);
+
+        // disable to remove tasks
+        task.style.pointerEvents = 'none';
+    });
+
     changeActiveCard('tasks');
+
+    // hide thr remove tooltip
+    tasksCard.classList.add('tasks--changing');
 
     if (tasksCard.classList.contains('active')) {
         cardButton.addEventListener('click', function () {
             const titleNewValue = title.value;
             const taskButton = document.querySelector('.main-tasks__subitem--tasks.active > span');
+            const inputsEdit = document.querySelectorAll('.tasks__change-item');
+
+            // change taks item
+            inputsEdit.forEach(input => {
+                const currentTask = input.nextElementSibling;
+                if (input.value !== '') {
+                    currentTask.innerText = input.value;
+                }
+                input.remove();
+
+                // enable to remove tasks
+                currentTask.style.pointerEvents = 'auto';
+            });
 
 
+            // change the task title in main obj
             if (mainTasksObj[titleOldValue] !== mainTasksObj[titleNewValue]) {
                 Object.defineProperty(mainTasksObj, titleNewValue,
                     Object.getOwnPropertyDescriptor(mainTasksObj, titleOldValue));
@@ -859,9 +873,18 @@ function changeTasksListData() {
             mainTasksObj[titleNewValue]['nameList'] = titleNewValue;
             taskButton.textContent = mainTasksObj[titleNewValue]['nameList'];
 
+            // add new tasks array in main obj
+            const newTaskItems = document.querySelectorAll('.tasks__item');
+
+            mainTasksObj[titleNewValue]['tasksList'] = newTaskItems;
+
+            // return to start condition
             title.setAttribute('readonly', 'true');
             cardButton.classList.remove('active');
             editTasksButton.classList.remove('hidden');
+
+            // show thr remove tooltip
+            tasksCard.classList.remove('tasks--changing');
         }, {
             once: true
         });

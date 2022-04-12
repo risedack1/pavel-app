@@ -35,7 +35,7 @@
         }
 
         &:not(:last-child) {
-            margin-right: 18px;
+            margin-right: 12px;
         }
 
         svg {
@@ -154,7 +154,6 @@
     }
 
     &__item {
-
     }
 
     &__item-button {
@@ -186,7 +185,7 @@
             transform: translateY(-50%) rotate(180deg);
             transition: transform 0.3s;
         }
-        
+
         &.hidden::after {
             transform: translateY(-50%) rotate(0);
         }
@@ -215,7 +214,6 @@
     }
 
     &__sublist {
-
     }
 
     &__subitem {
@@ -240,7 +238,6 @@
         }
     }
 
-
     &__task {
         position: relative;
         width: 100%;
@@ -254,13 +251,12 @@
         padding: 0;
         width: 20px;
         height: 20px;
-        background-image: url('../images/remove-icon.png');
+        background-image: url("../images/remove-icon.png");
         border: none;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
         background-color: transparent;
-        
     }
 }
 
@@ -305,14 +301,20 @@
         max-height: none;
         width: 100%;
         background-color: transparent;
-        background-image: url('../images/sign-up-bg.jpg'),radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(23, 24, 24, 0.2) 0%, rgba(17, 23, 27, 0.045) 77.08%, rgba(0, 0, 0, 0) 100%);
+        background-image: url("../images/sign-up-bg.jpg"),
+            radial-gradient(
+                90.16% 143.01% at 15.32% 21.04%,
+                rgba(23, 24, 24, 0.2) 0%,
+                rgba(17, 23, 27, 0.045) 77.08%,
+                rgba(0, 0, 0, 0) 100%
+            );
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
         backdrop-filter: blur(100px);
 
         &::after {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             bottom: 0;
@@ -441,14 +443,20 @@
         max-height: none;
         width: 100%;
         background-color: transparent;
-        background-image: url('../images/sign-up-bg.jpg'),radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(23, 24, 24, 0.2) 0%, rgba(17, 23, 27, 0.045) 77.08%, rgba(0, 0, 0, 0) 100%);
+        background-image: url("../images/sign-up-bg.jpg"),
+            radial-gradient(
+                90.16% 143.01% at 15.32% 21.04%,
+                rgba(23, 24, 24, 0.2) 0%,
+                rgba(17, 23, 27, 0.045) 77.08%,
+                rgba(0, 0, 0, 0) 100%
+            );
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
         backdrop-filter: blur(100px);
 
         &::after {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             bottom: 0;
@@ -537,6 +545,12 @@
 .tasks {
     position: relative;
     height: 90%;
+
+    &__list {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
     &__span {
         display: block;
         margin-bottom: 12px;
@@ -587,6 +601,19 @@
         }
     }
 
+    &__change-item {
+        margin-bottom: 20px;
+        padding: 5px 10px;
+        padding-left: 30px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #fff;
+        text-align: left;
+        color: $white;
+        font-size: 12px;
+        background-color: $white-bg;
+    }
+
     &__item {
         position: relative;
         bottom: 0;
@@ -617,7 +644,7 @@
         }
 
         &::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 50%;
             left: 10px;
@@ -631,7 +658,7 @@
 
     &--list {
         &::after {
-            content: 'Нажми, что бы удалить задачу';
+            content: "Нажми, что бы удалить задачу";
             position: absolute;
             top: 0;
             right: 0;
@@ -641,6 +668,10 @@
             text-align: center;
             color: #fefefe;
             transition: opacity 0.3s;
+
+            @include w($sm) {
+                width: 70%;
+            }
         }
 
         @media (any-hover) {
@@ -651,6 +682,12 @@
             &:hover::after {
                 opacity: 1;
             }
+        }
+    }
+
+    &--changing {
+        &::after {
+            display: none;
         }
     }
 }
@@ -683,7 +720,7 @@
         cursor: text;
 
         &::-webkit-scrollbar {
-            width: 3px; 
+            width: 3px;
             background-color: rgba(255, 255, 255, 0.3);
         }
 
@@ -798,7 +835,7 @@
         font-size: 12px;
         line-height: 1;
         color: $white;
-        background-image: url('../images/icons/links-white.svg');
+        background-image: url("../images/icons/links-white.svg");
         background-position: left center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -809,7 +846,7 @@
         }
 
         &::before {
-            content: '-';
+            content: "-";
         }
     }
 
@@ -836,8 +873,12 @@
     position: relative;
 }
 
-.tabs-block.active.required::before {
-    content: 'Заполните поле';
+.tabs__content--input {
+    position: relative;
+}
+
+.tabs__content--input.required::before {
+    content: "Заполните поле";
     position: absolute;
     right: -1%;
     bottom: -70%;
